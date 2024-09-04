@@ -1,0 +1,10 @@
+{
+    "diagnostics.disable": [
+        "param-type-mismatch"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "remove_current_buffer",
+        "LazyVim"
+    ]
+}

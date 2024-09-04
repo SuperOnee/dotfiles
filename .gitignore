@@ -1,0 +1,7 @@
+htop
+nvim.bak
+raycast
+.DS_store
+tmux-*.log
+/**/.git
+/**/.gitignore
