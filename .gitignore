@@ -3,5 +3,6 @@ nvim.bak
 raycast
 .DS_store
 tmux-*.log
+tmux/plugins
 /**/.git
 /**/.gitignore
