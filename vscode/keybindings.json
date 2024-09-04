@@ -1,0 +1,108 @@
+// Place your key bindings in this file to override the defaults
+[
+  // MetaJump
+  {
+    "key": "ctrl+;",
+    "command": "metaGo.gotoSmart",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "turboConsoleLog.displayLogMessage",
+    "key": "cmd+i"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "tab",
+    "command": "togglePeekWidgetFocus",
+    "when": "inReferenceSearchEditor && vim.active && vim.mode != 'Insert' || referenceSearchVisible"
+  },
+  {
+    "key": "t",
+    "command": "toggleexcludedfiles.toggle",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "q",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "c",
+    "command": "filesExplorer.copy",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "f",
+    "command": "revealFileInOS",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "alt+/",
+    "command": "-metaGo.gotoSmart"
+  },
+  {
+    "key": "alt+delete",
+    "command": "-metaGo.metaJump.deleteToAfter",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+backspace",
+    "command": "-metaGo.metaJump.deleteToBefore",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+enter",
+    "when": "inputFocus && neovim.mode == 'normal'",
+    "command": "editor.action.insertLineAfter"
+  }
+]

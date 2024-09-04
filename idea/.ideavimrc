@@ -1,0 +1,200 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=10
+
+" Do incremental searching.
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set idearefactormode=keep
+set ideajoin
+set which-key
+set notimeout
+set sneak
+set NERDTree
+set easymotion
+set argtextobj
+set highlightedyank
+set surround
+set number
+set relativenumber
+set multiple-cursors
+
+" set <leader> to <space>
+let mapleader = " "
+
+" Use system clipboard
+set clipboard+=unnamed
+
+" Deleting not copying
+nnoremap x "_x
+nnoremap X "_X
+nnoremap d "_d
+nnoremap D "_D
+nnoremap c "_c
+nnoremap C "_C
+
+" Virtual
+" vnoremap x "_x
+" vnoremap X "_X
+vnoremap d "_d
+vnoremap D "_D
+vnoremap c "_c
+vnoremap C "_C
+
+" ================================================================================================
+" = No Leader Keymaps =====================================
+" ================================================================================================
+nmap ss <Action>(SplitVertically)
+nmap sv <Action>(SplitHorizontally)
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+nmap gt <Action>(GotoTest)
+nmap gs <Action>(GotoSuperMethod)
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+map <leader>ur :nohls<CR>
+map K <Action>(ParameterInfo)
+" Multiple cursors operations
+" Select next Occurrence
+map <C-p> <A-n>
+" Skip next Occurrence
+map <C-x> <A-x>
+map <C-,> <A-p>
+
+" window move
+nnoremap <C-h> <c-w>h
+nnoremap <C-l> <c-w>l
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+
+" Bookmark
+nmap mm <Action>(ToggleBookmark)
+nmap ma mA
+nmap 'a 'A
+
+" ================================================================================================
+" = Leader Keymaps =====================================
+" ================================================================================================
+
+nmap [d <Action>(GotoNextError)
+nmap ]d <Action>(GotoPreviousError)
+
+map <leader><leader> <Action>(SearchEverywhere)
+
+map <leader>/ <Action>(FindInPath)
+
+" Toggle ⭐
+let g:WhichKeyDesc_Toggle = "<leader>t Toggle"
+let g:WhichKeyDesc_ToggleDistractionFreeMode = "<leader>td ToggleDistractionFreeMode"
+map <leader>td <Action>(ToggleDistractionFreeMode)
+let g:WhichKeyDesc_ToggleZenMode = "<leader>tz ToggleZenMode"
+map <leader>tz <Action>(ToggleZenMode)
+let g:WhichKeyDesc_ToggleLineBreakpoint = "<leader>tb ToggleLineBreakpoint"
+map <leader>tb <Action>(ToggleLineBreakpoint)
+
+" Find ⭐️
+let g:WhichKeyDesc_Find = "<leader>f Find"
+let g:WhichKeyDesc_FindFile = "<leader>ff GotoFile"
+map <leader>ff <Action>(GotoFile)
+let g:WhichKeyDesc_FindRecentLocations = "<leader>fl RecentLocations"
+map <leader>fl <Action>(RecentLocations)
+let g:WhichKeyDesc_GotoAction = "<leader>fa GotoAction"
+map <leader>fa <Action>(GotoAction)
+let g:WhichKeyDesc_FindUsages = "<leader>fu FindUsages"
+
+map L <Action>(NextTab)
+map H <Action>(PreviousTab)
+map <C-u> 9kzz
+map <C-d> 9jzz
+
+let g:WhichKeyDesc_Show = "<leader>s Find"
+let g:WhichKeyDesc_ShowFileStructure = "<leader>ss ShowFileStructure"
+nmap <leader>ss <Action>(FileStructurePopup)
+let g:WhichKeyDesc_ShowBookmarks = "<leader>sb ShowBookmarks"
+nmap <leader>sm <Action>(ShowBookmarks)
+
+" Buffers 🌟
+let g:WhichKeyDesc_Buffers = "<leader>b"
+let g:WhichKeyDesc_CloseCurrentBuffer = "<leader>bd CloseCurrentBuffer"
+nmap <leader>bd <Action>(CloseContent)
+let g:WhichKeyDesc_CloseAllBuffers = "<leader>ba"
+nmap <leader>ba <Action>(CloseAllEditors)
+let g:WhichKeyDesc_CloseAllBuffersButActive = "<leader>bo"
+nmap <leader>bo <Action>(CloseAllEditorsButActive)
+let g:WhichKeyDesc_TogglePin = "<leader>bp"
+nmap <leader>bp <Action>(PinActiveEditorTab)
+
+" Run ⭐️
+let g:WhichKeyDesc_RunOrRe = "<leader>r Run"
+let g:WhichKeyDesc_ReRun = "<leader>rr ReRun"
+nmap <leader>rr <Action>(Rerun)
+let g:WhichKeyDesc_Run = "<leader>ru Run"
+map <leader>ru <Action>(Run)
+let g:WhichKeyDesc_RunCurrentFile = "<leader>rc RunCurrentFile"
+map <leader>rf <Action>(RunClass)
+let g:WhichKeyDesc_RunStop = "<leader>rs RunStop"
+map <leader>rs <Action>(Stop)
+let g:WhichKeyDesc_EditRunConfigurations = "<leader>rc EditRunConfigurations"
+map <leader>rc <Action>(editRunConfigurations)
+let g:WhichKeyDesc_RunDebug = "<leader>rd RunDebug"
+map <leader>rd <Action>(Debug)
+
+" Zip ⭐️
+let g:WhichKeyDesc_Zip = "<leader>z Zip"
+let g:WhichKeyDesc_UnzipSelection = "<leader>zo UnzipSelection"
+nmap <leader>zo <Action>(ExpandRegion)
+let g:WhichKeyDesc_ZipSelection = "<leader>zc ZipSelection"
+nmap <leader>zc <Action>(CollapseRegion)
+let g:WhichKeyDesc_ZipAll = "<leader>zg ZipAll"
+nmap <leader>zg <Action>(CollapseAllRegions)
+let g:WhichKeyDesc_UnzipAll = "<leader>zG UnzipAll"
+nmap <leader>zG <Action>(ExpandAllRegions)
+
+" Code ⭐
+let g:WhichKeyDesc_CodeActions = "<leader>c"
+let g:WhichKeyDesc_OrganizeImports = "<leader>co"
+nmap <leader>co <Action>(OptimizeImports)
+let g:WhichKeyDesc_Reformat = "<leader>cf"
+nmap <leader>cf <Action>(ReformatCode)
+let g:WhichKeyDesc_RenameElement = "<leader>cr"
+nmap <leader>cr <Action>(RenameElement)
+let g:WhichKeyDesc_RenameFile = "<leader>cR"
+nmap <leader>cR <Action>(RenameFile)
+let g:WhichKeyDesc_Refactor = "<leader>ct"
+nmap <leader>ct <Action>(RefactoringMenu)
+let g:WhichKeyDesc_ShowContextAction = "<leader>ca ShowContextAction"
+nmap <leader>ca <Action>(ShowIntentionActions)
+
+" Util ⭐
+let g:WhichKeyDesc_CodeActions = "<leader>x Text"
+let g:WhichKeyDesc_ReplaceInFile = "<leader>xf ReplaceInFile"
+nmap <leader>xf <Action>(Replace)
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins " Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+map <leader>e :NERDTree<CR>
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
