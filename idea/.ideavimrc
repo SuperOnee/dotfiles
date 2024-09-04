@@ -89,8 +89,6 @@ nmap 'a 'A
 nmap [d <Action>(GotoNextError)
 nmap ]d <Action>(GotoPreviousError)
 
-map <leader><leader> <Action>(SearchEverywhere)
-
 map <leader>/ <Action>(FindInPath)
 
 " Toggle ⭐
