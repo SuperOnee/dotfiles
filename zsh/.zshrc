@@ -131,9 +131,6 @@ eval "$(starship init zsh)"
 #  cow=$(shuf -n 1 -e $(cowsay -l))
 # fortune | cowsay -f "$cow" | lolcat --spread 1.0
 
-lolcat --spread 1.0 ~/.config/zsh/banner.txt
-
-
 # Created by `pipx` on 2024-06-24 03:36:06
 export PATH="$PATH:/Users/heisenberg/.local/bin"
 
