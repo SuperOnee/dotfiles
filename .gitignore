@@ -9,3 +9,5 @@ lazy-lock.json
 .zsh_history
 .zcompdump*
 spicetify
+iterm2
+.zsh_sessions
