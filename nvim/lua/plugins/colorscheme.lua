@@ -8,7 +8,7 @@ return {
       flavour = 'mocha',
       custom_highlights = function(colors)
         return {
-          Visual = { bg = colors.rosewater, fg = colors.surface0 },
+          Visual = { bg = colors.peach, fg = colors.surface0 },
         }
       end,
       transparent_background = true,
@@ -42,7 +42,7 @@ return {
         notify = true,
         mini = {
           enabled = true,
-          indentscope_color = 'rosewater',
+          indentscope_color = 'peach',
         },
         which_key = true,
         semantic_tokens = true,
