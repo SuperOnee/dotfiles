@@ -19,7 +19,7 @@ local config = {
 		},
 	},
 	font_size = 19,
-	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
+	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" }),
 	color_scheme = "Catppuccin Mocha",
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
