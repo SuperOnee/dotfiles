@@ -3,14 +3,22 @@ return {
   opts = {
     ensure_installed = {
       'html',
+      'typescript',
+      'javascript',
       'css',
       'scss',
+      'vue',
+      'go',
+      'python',
       'tsx',
       'sql',
       'gitignore',
       'vimdoc',
       'markdown',
       'lua',
+      'regex',
+      'bash',
+      'latex',
     },
     incremental_selection = {
       enable = true,
