@@ -89,13 +89,13 @@ return {
             return {
               CmpItemMenu = { fg = colors.surface2 },
               CursorLineNr = { fg = colors.text },
-              FloatBorder = { bg = colors.base, fg = colors.pink }, -- colors.surface0 }, difficult to see
+              FloatBorder = { bg = colors.none, fg = colors.pink }, -- colors.surface0 }, difficult to see
               GitSignsChange = { fg = colors.peach },
               LineNr = { fg = colors.overlay0 },
               LspInfoBorder = { link = 'FloatBorder' },
               NeoTreeDirectoryIcon = { fg = colors.pink },
               NeoTreeDirectoryName = { fg = colors.pink },
-              NeoTreeFloatBorder = { bg = colors.pink, fg = colors.pink },
+              NeoTreeFloatBorder = { bg = colors.none, fg = colors.none },
               NeoTreeGitConflict = { fg = colors.red },
               NeoTreeGitDeleted = { fg = colors.red },
               NeoTreeGitIgnored = { fg = colors.overlay0 },
@@ -125,7 +125,7 @@ return {
               TelescopePreviewTitle = { link = 'TelescopePromptTitle' },
               TelescopePreviewBorder = { link = 'TelescopePromptBorder' },
               VertSplit = { bg = colors.base, fg = colors.surface0 },
-              WhichKeyFloat = { bg = colors.mantle },
+              WhichKeyFloat = { bg = colors.mantle, fg = colors.pink },
               YankHighlight = { bg = colors.surface2 },
               IblIndent = { fg = colors.overlay2 },
               IblScope = { fg = colors.overlay0 },
