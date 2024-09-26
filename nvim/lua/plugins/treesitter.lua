@@ -15,6 +15,7 @@ return {
       'gitignore',
       'vimdoc',
       'markdown',
+      'yaml',
       'lua',
       'regex',
       'bash',
