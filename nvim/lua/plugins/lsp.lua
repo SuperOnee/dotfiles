@@ -75,6 +75,20 @@ return {
             'pug',
           },
         },
+        vtsls = {
+          settings = {
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = false,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                  entriesLimit = 30,
+                },
+              },
+            },
+          },
+        },
       },
     },
   },

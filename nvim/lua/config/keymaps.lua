@@ -5,17 +5,6 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
--- Remove the current buffer and displaying dashboard when no buffer is opened
--- function REMOVE_CURRENT_BUFFER()
---   LazyVim.ui.bufremove()
---   local fallback_name = vim.api.nvim_buf_get_name(0)
---   -- local fallback_ft = vim.api.nvim_buf_get_option(0, 'filetype')
---   local fallback_on_empty = fallback_name == '' and vim.bo.filetype == ''
---   if fallback_on_empty then
---     vim.cmd('Dashboard')
---   end
--- end
-
 -- Deleting without copying, cut with X
 keymap.set('n', 'x', '"_x')
 keymap.set('n', 'c', '"_c')
@@ -60,3 +49,13 @@ keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
 
 -- Select all text in current file
 keymap.set('n', '<C-a>', 'gg<S-v>G')
+
+local ls = require('luasnip')
+
+keymap.set({ 'i', 's' }, '<C-L>', function()
+  ls.jump(1)
+end, opts)
+
+keymap.set({ 'i', 's' }, '<C-H>', function()
+  ls.jump(-1)
+end, opts)
