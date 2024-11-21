@@ -83,7 +83,6 @@ return {
         show_buffer_close_icons = false,
         always_show_bufferline = true,
         show_close_icon = false,
-        highlights = require('catppuccin.groups.integrations.bufferline').get(),
       },
     },
   },
@@ -97,30 +96,25 @@ return {
       close = { enable = false },
     },
   },
+  -- dashboard
   {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    opts = function(_, opts)
-      local logo = [[
-                                                                                  ⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀
-                                                                                  ⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
-                                                                                  ⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
-                                                                                  ⠀⠀⠀⠀⠀⢸⡿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⢿⣧⠀⠀⠀⠀⠀
-             _    _ ______ _____  _____ ______ _   _ ____  ______ _____   _____   ⢀⣀⣀⣀⣀⣸⣇⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣸⣿⣀⣀⣀⣀⠀
-            | |  | |  ____|_   _|/ ____|  ____| \ | |  _ \|  ____|  __ \ / ____|  ⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇
-            | |__| | |__    | | | (___ | |__  |  \| | |_) | |__  | |__) | |  __   ⠀⠀⠀⠉⢙⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⣿⠿⠿⠿⠿⠿⢿⣿⣛⠉⠁⠀⠀
-            |  __  |  __|   | |  \___ \|  __| | . ` |  _ <|  __| |  _  /| | |_ |     ⣰⡟⠉⢰⣶⣶⣶⣶⣶⣶⡶⢶⣶⣶⣶⣶⣶⣶⡆⠉⠻⣧⠀  
-            | |  | | |____ _| |_ ____) | |____| |\  | |_) | |____| | \ \| |__| |     ⢻⣧⡀⠈⣿⣿⣿⣿⣿⡿⠁⠈⢿⣿⣿⣿⣿⣿⠁⠀⣠⡿⠀  
-            |_|  |_|______|_____|_____/|______|_| \_|____/|______|_|  \_\\_____|     ⠀⠙⣿⡆⠈⠉⠉⠉⠉⠀⠀⠀⠀⠉⠉⠉⠉⠁⢰⣿⠋⠀⠀  
-                                                                                      ⠀⠀⣿⡇⠀⠀⠀⣠⣶⣶⣶⣶⣶⣶⣄⠀⠀⠀⢸⣿⠀⠀⠀  
-                                                                                    ⠀⠀⠀⠸⣷⡀⠀⠀⣿⠛⠉⠉⠉⠉⠛⣿⠀⠀⢀⣾⠇⠀⠀⠀⠀⠀
-                                                                                    ⠀⠀⠀⠀⠘⢿⣦⡀⣿⣄⠀⣾⣷⠀⣠⣿⣀⣴⡟⠁⠀⠀⠀⠀⠀⠀
-                                                                                    ⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀
-                                                                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                  ]]
-
-      logo = string.rep('\n', 8) .. logo .. '\n\n'
-      opts.config.header = vim.split(logo, '\n')
-    end,
+    'folke/snacks.nvim',
+    opts = {
+      dashboard = {
+        sections = {
+          { section = 'header' },
+          { section = 'keys', gap = 1, padding = 1 },
+          { section = 'startup' },
+          {
+            section = 'terminal',
+            cmd = 'pokemon-colorscripts -n charizard --no-title; sleep .1',
+            random = 30,
+            pane = 2,
+            indent = 8,
+            height = 30,
+          },
+        },
+      },
+    },
   },
 }

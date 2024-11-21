@@ -160,3 +160,6 @@ _fzf_comprun() {
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"

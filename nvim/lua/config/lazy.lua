@@ -29,6 +29,7 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.lang.tailwind' },
     { import = 'lazyvim.plugins.extras.lang.docker' },
+    { import = 'lazyvim.plugins.extras.lang.sql' },
     -- Coding
     { import = 'lazyvim.plugins.extras.util.mini-hipatterns' },
     { import = 'lazyvim.plugins.extras.coding.mini-surround' },
@@ -37,7 +38,7 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.coding.luasnip' },
     { import = 'lazyvim.plugins.extras.coding.yanky' },
     -- codeium
-    { import = 'lazyvim.plugins.extras.coding.codeium' },
+    { import = 'lazyvim.plugins.extras.ai.codeium' },
     -- UI
     { import = 'lazyvim.plugins.extras.ui.mini-indentscope' },
     { import = 'lazyvim.plugins.extras.ui.mini-animate' },
