@@ -37,7 +37,7 @@ keymap.set('n', '-', '<C-x>')
 
 keymap.set('n', '<leader>ba', function()
   vim.cmd('BufferLineCloseOthers')
-  LazyVim.ui.bufremove()
+  Snacks.bufdelete()
 end, { desc = 'Delete all buffers' })
 
 -- Save file
