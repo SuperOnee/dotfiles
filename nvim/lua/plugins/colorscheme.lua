@@ -23,6 +23,7 @@ return {
           }
         end,
         integrations = {
+          snacks = true,
           dashboard = true,
           headlines = true,
           flash = true,
@@ -34,6 +35,7 @@ return {
           notifier = true,
           harpoon = true,
           cmp = true,
+          blink_cmp = true,
           native_lsp = {
             enabled = true,
             underlines = {
@@ -60,7 +62,12 @@ return {
         highlight_overrides = {
           mocha = function(colors)
             return {
-              CmpItemMenu = { fg = colors.surface2 },
+              BlinkCmpMenu = { bg = 'black' },
+              BlinkCmpLabel = { bg = colors.none, fg = colors.peach },
+              BlinkCmpKind = { bg = colors.none, fg = colors.none },
+              BlinkCmpMenuSelection = { bg = colors.green, fg = colors.mantle },
+              BlinkCmpScrollBarGutter = { bg = colors.surface2 },
+              BlinkCmpScrollBarThumb = { bg = colors.peach },
               CursorLineNr = { fg = colors.green },
               FloatBorder = { bg = colors.none, fg = colors.pink }, -- colors.surface0 }, difficult to see
               GitSignsChange = { fg = colors.peach },
@@ -86,10 +93,6 @@ return {
               NeoTreeTabSeparatorInactive = { fg = colors.crust, bg = colors.crust },
               NeoTreeWinSeparator = { fg = colors.pink, bg = colors.none },
               NormalFloat = { bg = colors.base },
-              Pmenu = { bg = 'black' },
-              PmenuSel = { bg = colors.green, fg = colors.mantle },
-              PmenuSbar = { bg = colors.surface2 },
-              PmenuThumb = { bg = colors.peach },
               -- telescope prompt
               TelescopePromptTitle = { fg = colors.mantle, bg = colors.green, style = { 'bold' } },
               TelescopePromptCounter = { fg = colors.red, style = { 'bold' } },
