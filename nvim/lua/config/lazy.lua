@@ -37,8 +37,10 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
     { import = 'lazyvim.plugins.extras.coding.luasnip' },
     { import = 'lazyvim.plugins.extras.coding.yanky' },
-    -- codeium
-    { import = 'lazyvim.plugins.extras.ai.codeium' },
+    -- Ai
+    -- { import = 'lazyvim.plugins.extras.ai.codeium' },
+    { import = 'lazyvim.plugins.extras.ai.copilot' },
+    { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
     -- UI
     { import = 'lazyvim.plugins.extras.ui.mini-indentscope' },
     { import = 'lazyvim.plugins.extras.ui.mini-animate' },
