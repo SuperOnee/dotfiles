@@ -30,35 +30,57 @@ return {
       options = { try_as_border = true, border = 'both', indent_at_cursor = true },
     },
   },
+  -- Copilot
   {
-    'nvim-lualine/lualine.nvim',
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, 2, LazyVim.lualine.cmp_source('codeium'))
-    end,
-  },
-  -- Codeium
-  {
-    'Exafunction/codeium.nvim',
-    cmd = 'Codeium',
-    build = ':Codeium Auth',
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
     opts = {
-      enable_cmp_source = false,
-      virtual_text = {
+      suggestion = {
         enabled = true,
-        key_bindings = {
-          accept = false, -- handled by nvim-cmp / blink.cmp
-          next = '<M-]>',
-          prev = '<M-[>',
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = '<C-l>',
+          accept_word = '<C-h>',
+          accept_line = '<C-j>',
+          next = '<M-l>',
+          prev = '<M-h>',
+          dismiss = '<C-]>',
         },
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = false,
       },
     },
   },
+  -- Codeium
+  -- {
+  --   'Exafunction/codeium.nvim',
+  --   cmd = 'Codeium',
+  --   build = ':Codeium Auth',
+  --   opts = {
+  --     enable_cmp_source = false,
+  --     virtual_text = {
+  --       enabled = true,
+  --       key_bindings = {
+  --         accept = false, -- handled by nvim-cmp / blink.cmp
+  --         next = '<M-]>',
+  --         prev = '<M-[>',
+  --       },
+  --     },
+  --   },
+  -- },
   {
     'saghen/blink.cmp',
     opts = {
-      sources = {
-        compact = { 'codeium' },
-        providers = { codeium = { kind = 'Codeium' } },
+      completion = {
+        list = {
+          max_items = 15,
+          selection = 'preselect',
+        },
       },
     },
   },
