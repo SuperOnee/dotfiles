@@ -80,7 +80,7 @@ return {
       local cmp = require('cmp')
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline({
-          ['<Tab>'] = { c = cmp.mapping.confirm({ select = false }) },
+          ['<C-l>'] = { c = cmp.mapping.confirm({ select = false }) },
         }),
         sources = cmp.config.sources({
           { name = 'path' },
