@@ -37,6 +37,8 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
     { import = 'lazyvim.plugins.extras.coding.luasnip' },
     { import = 'lazyvim.plugins.extras.coding.yanky' },
+    -- nvim cmp
+    { import = 'lazyvim.plugins.extras.coding.nvim-cmp' },
     -- Ai
     -- { import = 'lazyvim.plugins.extras.ai.codeium' },
     { import = 'lazyvim.plugins.extras.ai.copilot' },

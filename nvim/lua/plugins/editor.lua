@@ -73,6 +73,35 @@ return {
   --     },
   --   },
   -- },
+  -- cmdline
+  {
+    'hrsh7th/cmp-cmdline',
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline({
+          ['<Tab>'] = { c = cmp.mapping.confirm({ select = false }) },
+        }),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+      })
+    end,
+  },
+  -- Cmp
+  {
+    'hrsh7th/nvim-cmp',
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = 'copilot',
+        group_index = 1,
+        priority = 100,
+      })
+    end,
+  },
+  -- Blink cmp
   {
     'saghen/blink.cmp',
     opts = {
