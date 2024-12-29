@@ -110,7 +110,7 @@ alias of="open -a finder ."
 
 # Keybindings
 bindkey -v
-bindkey -M viins '^B' autosuggest-accept
+bindkey -M viins '^[l' autosuggest-accept
 bindkey -M viins '^N' menu-select
 bindkey -M viins '^P' reverse-menu-complete
 
