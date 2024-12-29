@@ -1,0 +1,21 @@
+theme = catppuccin-mocha
+background-opacity = 0.85
+background-blur-radius = 15
+font-family = JetbrainsMono Nerd Font Mono
+font-size = 20
+shell-integration = zsh
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+adjust-underline-thickness = 1
+adjust-underline-position = 5
+mouse-hide-while-typing = true
+macos-titlebar-style = hidden
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+macos-non-native-fullscreen = true
+
+# Keybindings
+keybind = cmd+s>r=reload_config
+keybind = cmd+s>l=toggle_quick_terminal
+keybind = cmd+s>z=toggle_fullscreen

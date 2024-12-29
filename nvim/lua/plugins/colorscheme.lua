@@ -170,7 +170,7 @@ return {
               TSKeyword = { fg = colors.red },
               TSKeywordFunction = { fg = colors.red },
               TSKeywordOperator = { fg = colors.sapphire, style = { 'bold' } },
-              TSKeywordReturn = { fg = colors.pink, style = { 'bold' } },
+              TSKeywordReturn = { fg = colors.red, style = { 'bold' } },
               TSLabel = { fg = colors.peach },
               TSLiteral = { link = 'String' },
               TSMath = { fg = colors.blue },

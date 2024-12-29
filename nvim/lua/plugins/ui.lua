@@ -67,15 +67,58 @@ return {
   {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
-    opts = {
-      options = {
-        -- separator_style = 'slope',
+    opts = function(_, opt)
+      local mocha = require('catppuccin.palettes').get_palette('mocha')
+      opt.highlights = require('catppuccin.groups.integrations.bufferline').get({
+        styles = { 'italic', 'bold', 'underline' },
+        custom = {
+          mocha = {
+            background = { fg = mocha.text },
+            indicator_selected = {
+              fg = mocha.green,
+              sp = mocha.red,
+            },
+            buffer_selected = {
+              fg = mocha.green,
+              sp = mocha.red,
+            },
+          },
+        },
+      })
+      opt.options = {
+        indicator = {
+          style = 'none',
+        },
+        separator_style = 'none',
         -- mode = 'tabs',
         show_buffer_close_icons = false,
         always_show_bufferline = true,
-        show_close_icon = false,
-      },
-    },
+        showkj_close_icon = false,
+      }
+    end,
+    -- opts = {
+    --   highlights = require('catppuccin.groups.integrations.bufferline').get({
+    --     styles = { 'italic', 'bold' },
+    --     custom = {
+    --       all = {
+    --         fill = { bg = '#000000' },
+    --       },
+    --       mocha = {
+    --         background = { fg = mocha.text },
+    --       },
+    --       latte = {
+    --         background = { fg = '#000000' },
+    --       },
+    --     },
+    --   }),
+    --   options = {
+    --     -- separator_style = 'slope',
+    --     -- mode = 'tabs',
+    --     show_buffer_close_icons = false,
+    --     always_show_bufferline = true,
+    --     showkj_close_icon = false,
+    --   },
+    -- },
   },
   {
     'echasnovski/mini.animate',
