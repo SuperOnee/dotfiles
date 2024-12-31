@@ -171,6 +171,9 @@ return {
         -- ~/github/dotfiles-latest/neovim/nvim-lazyvim/lua/plugins/treesitter.lua
         html = {
           enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = false,
+          only_render_image_at_cursor = true,
         },
         -- This is disabled by default
         -- Detect and render images referenced in CSS files
@@ -178,6 +181,9 @@ return {
         -- ~/github/dotfiles-latest/neovim/nvim-lazyvim/lua/plugins/treesitter.lua
         css = {
           enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = false,
+          only_render_image_at_cursor = true,
         },
       },
       max_width = nil,

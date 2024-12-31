@@ -108,12 +108,6 @@ alias note="cd ~/Notes/"
 alias dotn="cd ~/.config/nvim"
 alias of="open -a finder ."
 
-# Keybindings
-bindkey -v
-bindkey -M viins '^[l' autosuggest-accept
-bindkey -M viins '^N' menu-select
-bindkey -M viins '^P' reverse-menu-complete
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
@@ -170,3 +164,4 @@ export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+export EDITOR=nvim

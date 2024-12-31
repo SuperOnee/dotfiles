@@ -1,6 +1,6 @@
 theme = catppuccin-mocha
 background-opacity = 0.85
-background-blur-radius = 15
+background-blur-radius = 5
 font-family = JetbrainsMono Nerd Font Mono
 font-size = 20
 shell-integration = zsh
