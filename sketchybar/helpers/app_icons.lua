@@ -310,4 +310,5 @@ return {
 	["zoom.us"] = ":zoom:",
 	["Zotero"] = ":zotero:",
 	["Zulip"] = ":zulip:",
+	["Ghostty"] = ":terminal:",
 }

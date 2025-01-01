@@ -10,3 +10,10 @@
 luarocks install luasocket
 luarocks install dkjson
 luarocks install luasec
+
+## App icons
+
+Install sketchybar app icons
+[github](https://github.com/kvndrsslr/sketchybar-app-font)
+
+Some icons are not showing properly

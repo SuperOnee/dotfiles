@@ -24,7 +24,7 @@ local ethereum = sbar.add("item", "widgets.ethereum", 42, {
 		padding_right = settings.paddings,
 		y_offset = 0,
 	},
-	update_freq = 2,
+	update_freq = 15,
 	updates = true,
 	padding_right = settings.paddings,
 })
@@ -58,7 +58,7 @@ local function fetch_ethereum_ticker()
 	end
 end
 
-ethereum:subscribe({ "routine", "forced", "system_woke" }, function(_)
+local function update_ethereum_price()
 	local price, change = fetch_ethereum_ticker()
 	local text_color = colors.green
 	if tonumber(change) < 0 then
@@ -69,4 +69,8 @@ ethereum:subscribe({ "routine", "forced", "system_woke" }, function(_)
 			label = { string = price .. "$ " .. change .. "%", color = text_color },
 		})
 	end
-end)
+end
+
+update_ethereum_price()
+
+ethereum:subscribe({ "routine" }, update_ethereum_price)

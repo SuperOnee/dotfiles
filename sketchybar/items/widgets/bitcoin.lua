@@ -24,8 +24,8 @@ local bitcoin = sbar.add("item", "widgets.bitcoin", 42, {
 		padding_right = settings.paddings,
 		y_offset = 0,
 	},
-	update_freq = 3,
 	updates = true,
+	update_freq = 15,
 	padding_right = settings.paddings,
 })
 
@@ -58,7 +58,7 @@ local function fetch_bitcoin_ticker()
 	end
 end
 
-bitcoin:subscribe({ "routine", "forced", "system_woke" }, function(_)
+local function update_bitcoin_price()
 	local price, change = fetch_bitcoin_ticker()
 	local text_color = colors.green
 	if tonumber(change) < 0 then
@@ -69,4 +69,8 @@ bitcoin:subscribe({ "routine", "forced", "system_woke" }, function(_)
 			label = { string = price .. "$ " .. change .. "%", color = text_color },
 		})
 	end
-end)
+end
+
+update_bitcoin_price()
+
+bitcoin:subscribe({ "routine" }, update_bitcoin_price)
