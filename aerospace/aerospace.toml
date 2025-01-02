@@ -102,7 +102,7 @@ inner.horizontal = 15
 inner.vertical =   15
 outer.left =       20
 outer.bottom =     10
-outer.top =        50
+outer.top = [{monitor.main = 50}, { monitor."PHL 325M8C" = 50 }, 50]
 outer.right =      20
 
 # 'main' binding mode declaration

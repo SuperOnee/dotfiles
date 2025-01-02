@@ -7,9 +7,8 @@
 
 ## Fetching crypto data requirements(Note: US Ip address should change Binance api url)
 
-luarocks install luasocket
 luarocks install dkjson
-luarocks install luasec
+luarocks install http
 
 ## App icons
 
