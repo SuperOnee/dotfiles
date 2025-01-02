@@ -116,11 +116,8 @@ local function update_ethereum_price()
 end
 
 local function update_crypto_prices()
-	-- launch coroutines to fetch prices
-	local co1 = coroutine.create(update_bitcoin_price)
-	local co2 = coroutine.create(update_ethereum_price)
-	coroutine.resume(co1)
-	coroutine.resume(co2)
+	update_bitcoin_price()
+	update_ethereum_price()
 end
 
 -- setup

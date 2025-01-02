@@ -107,6 +107,8 @@ alias oo="cd ~/Code"
 alias note="cd ~/Notes/"
 alias dotn="cd ~/.config/nvim"
 alias of="open -a finder ."
+alias crypto="~/.config/script/crypto"
+alias build-crypto="go build ~/.config/script/crypto.go && mv crypto ~/.config/script/crypto"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
