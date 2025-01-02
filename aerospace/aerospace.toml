@@ -8,6 +8,9 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
+# Notify Sketchybar about focus change
+on-focus-changed = 'exec-and-forget sketchybar --trigger aerospace_focus_change'
+
 # Start AeroSpace at login
 start-at-login = true
 
@@ -142,6 +145,9 @@ alt-shift-left = 'join-with left'
 alt-shift-down = 'join-with down'
 alt-shift-up = 'join-with up'
 alt-shift-right = 'join-with right'
+
+# Balance windows
+alt-shift-b = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'

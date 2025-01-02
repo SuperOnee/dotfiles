@@ -1,3 +1,6 @@
+-- NOTE: The code below is a modified version of this github dicussion
+-- https://github.com/FelixKratz/SketchyBar/discussions/599
+
 -- items/workspaces.lua
 local colors = require("colors")
 local settings = require("settings")
@@ -172,6 +175,7 @@ for workspace_index = 1, max_workspaces do
 				blur_radius = 30,
 			})
 		end)
+		updateWindows(workspace_index)
 	end)
 
 	workspace:subscribe("aerospace_focus_change", function()
