@@ -66,8 +66,8 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = '<C-l>',
-          accept_word = '<C-h>',
+          accept = '<C-y>',
+          -- accept_word = '<C-h>',
           accept_line = '<C-j>',
           next = '<M-l>',
           prev = '<M-h>',
@@ -118,25 +118,46 @@ return {
   -- Cmp
   {
     'hrsh7th/nvim-cmp',
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = 'copilot',
-        group_index = 1,
-        priority = 100,
-      })
-    end,
-  },
-  -- Blink cmp
-  {
-    'saghen/blink.cmp',
-    opts = {
-      completion = {
-        list = {
-          max_items = 15,
-          selection = 'preselect',
+    dependencies = { -- this will only be evaluated if nvim-cmp is enabled
+      {
+        'zbirenbaum/copilot-cmp',
+        opts = {},
+        config = function(_, opts)
+          local copilot_cmp = require('copilot_cmp')
+          copilot_cmp.setup(opts)
+          -- attach cmp source whenever copilot attaches
+          -- fixes lazy-loading issues with the copilot cmp source
+          LazyVim.lsp.on_attach(function()
+            copilot_cmp._on_insert_enter({})
+          end, 'copilot')
+        end,
+        specs = {
+          {
+            'hrsh7th/nvim-cmp',
+            optional = true,
+            ---@param opts cmp.ConfigSchema
+            opts = function(_, opts)
+              table.insert(opts.sources, 1, {
+                name = 'copilot',
+                group_index = 1,
+                priority = 100,
+              })
+            end,
+          },
         },
       },
     },
+    opts = function(_, opts)
+      local cmp = require('cmp')
+      cmp.mapping.preset.insert({
+        ['<C-l>'] = function(fallback)
+          return LazyVim.cmp.map({ 'snippet_forward' }, fallback)()
+        end,
+        ['<C-h>'] = function(fallback)
+          return LazyVim.cmp.map({ 'snippet_backward' }, fallback)()
+        end,
+      })
+    end,
   },
   {
     '3rd/image.nvim',
@@ -210,4 +231,84 @@ return {
       hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' },
     },
   },
+  -- Blink
+  -- TODO: uncomment this code block when the issue is fixed, stick with nvim.cmp for now
+  -- https://github.com/Saghen/blink.cmp/issues/657
+  -- {
+  --   'saghen/blink.cmp',
+  --   opts = {
+  --     sources = {
+  --       default = { 'copilot', 'lsp', 'path', 'snippets', 'luasnip', 'buffer', 'lazydev' },
+  --       compat = {},
+  --       cmdline = {},
+  --       providers = {
+  --         lsp = {
+  --           name = 'lsp',
+  --           enabled = true,
+  --           module = 'blink.cmp.sources.lsp',
+  --           kind = 'LSP',
+  --           should_show_items = true,
+  --           score_offset = 90,
+  --         },
+  --         luasnip = {
+  --           name = 'luasnip',
+  --           enabled = true,
+  --           module = 'blink.cmp.sources.luasnip',
+  --           should_show_items = true,
+  --           min_keyword_length = 1,
+  --           score_offset = 80,
+  --           fallbacks = { 'snippets' },
+  --         },
+  --         snippets = {
+  --           name = 'snippets',
+  --           enabled = true,
+  --           module = 'blink.cmp.sources.snippets',
+  --           min_keyword_length = 1,
+  --           score_offset = 70,
+  --         },
+  --         copilot = {
+  --           name = 'copilot',
+  --           enabled = true,
+  --           module = 'blink-cmp-copilot',
+  --           kind = 'Copilot',
+  --           score_offset = 10,
+  --           async = true,
+  --         },
+  --       },
+  --     },
+  --     snippets = {
+  --       expand = function(snippet, _)
+  --         require('luasnip').lsp_expand(snippet)
+  --       end,
+  --       active = function(filter)
+  --         if filter and filter.direction then
+  --           return require('luasnip').jumpable(filter.direction)
+  --         end
+  --         return require('luasnip').in_snippet()
+  --       end,
+  --       jump = function(direction)
+  --         require('luasnip').jump(direction)
+  --       end,
+  --     },
+  --     completion = {
+  --       documentation = {
+  --         auto_show = true,
+  --         auto_show_delay_ms = 0,
+  --         window = {
+  --           border = 'rounded',
+  --         },
+  --       },
+  --     },
+  --     signature = {
+  --       window = { border = 'rounded' },
+  --     },
+  --     keymap = {
+  --       preset = 'enter',
+  --       ['<Tab>'] = { 'snippet_forward', 'fallback' },
+  --       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+  --       ['<C-l>'] = { 'snippet_forward', 'fallback' },
+  --       ['<C-h>'] = { 'snippet_backward', 'fallback' },
+  --     },
+  --   },
+  -- },
 }

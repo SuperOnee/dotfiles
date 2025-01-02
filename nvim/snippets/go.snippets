@@ -1,21 +1,21 @@
-snippet main mainFunction
+snippet main mainFunction[custom]
 	func main() {
 		${1}
 	}
 
-snippet pf fmt.Printf
+snippet pf fmt.Printf[custom]
 	fmt.Printf("${1}\n")
 
-snippet sf fmt.Sprintf
+snippet sf fmt.Sprintf[custom]
 	fmt.Sprintf(${1})
 
-snippet pl fmt.Println
+snippet pl fmt.Println[custom]
 	fmt.Println(${1})
 
-snippet ee ifErorrNotNil
+snippet ee ifErorrNotNil[custom]
 	if err != nil {
 		return err	
 	}
 
-snippet len0 lenGreaterThanZero
+snippet len0 lenGreaterThanZero[custom]
 	len(${1}) > 0

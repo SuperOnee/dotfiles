@@ -74,7 +74,7 @@ return {
               PmenuSbar = { bg = colors.surface2 },
               PmenuThumb = { bg = colors.peach },
               CursorLineNr = { fg = colors.green },
-              FloatBorder = { bg = colors.none, fg = colors.pink }, -- colors.surface0 }, difficult to see
+              FloatBorder = { bg = colors.none, fg = colors.pink },
               GitSignsChange = { fg = colors.peach },
               LineNr = { fg = colors.overlay0 },
               LspInfoBorder = { link = 'FloatBorder' },

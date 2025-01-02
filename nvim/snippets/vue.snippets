@@ -1,4 +1,4 @@
-snippet setup vue3-setup-ts
+snippet setup vue3-setup-ts[custom]
 	<script setup lang="ts">
 		${1}
 	</script>
@@ -7,7 +7,7 @@ snippet setup vue3-setup-ts
 		<div>${2}</div>
 	</template>
 
-snippet dp vue3DefineProps
+snippet dp vue3DefineProps[custom]
 	const ${2} = defineProps<{
 		${1}
 	}>()
@@ -18,10 +18,7 @@ snippet click onClick
 snippet change onChange
 	@change="${1}"
 	
-snippet styleScoped ScopeStyle
+snippet styleScoped ScopeStyle[custom]
 	<style scoped lang="${1}">
 		${2}
 	</style>
-
-snippet class htmlClass
-  class="${1}"
