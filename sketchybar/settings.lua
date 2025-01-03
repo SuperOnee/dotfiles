@@ -19,4 +19,5 @@ return {
 			["Black"] = "ExtraBold",
 		},
 	},
+	python_command = "/opt/homebrew/anaconda3/bin/python",
 }
