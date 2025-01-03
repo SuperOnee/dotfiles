@@ -58,38 +58,42 @@ sbar.add("bracket", "widgets.crypto.bracket", { ethereum.name, bitcoin.name }, {
 
 bitcoin:subscribe({ "routine" }, function()
 	sbar.exec("~/.config/script/crypto btc", function(res)
-		local current_price = tonumber(res["currentPrice"])
-		local price_change_percent = tonumber(res["priceChangePercent"])
+		if res then
+			local current_price = tonumber(res["currentPrice"])
+			local price_change_percent = tonumber(res["priceChangePercent"])
 
-		local color = colors.green
-		if price_change_percent < 0 then
-			color = colors.red
+			local color = colors.green
+			if price_change_percent < 0 then
+				color = colors.red
+			end
+
+			bitcoin:set({
+				label = {
+					string = current_price .. "$" .. " " .. price_change_percent .. "%",
+					color = color,
+				},
+			})
 		end
-
-		bitcoin:set({
-			label = {
-				string = current_price .. "$" .. " " .. price_change_percent .. "%",
-				color = color,
-			},
-		})
 	end)
 end)
 
 ethereum:subscribe({ "routine" }, function()
 	sbar.exec("~/.config/script/crypto eth", function(res)
-		local current_price = tonumber(res["currentPrice"])
-		local price_change_percent = tonumber(res["priceChangePercent"])
+		if res then
+			local current_price = tonumber(res["currentPrice"])
+			local price_change_percent = tonumber(res["priceChangePercent"])
 
-		local color = colors.green
-		if price_change_percent < 0 then
-			color = colors.red
+			local color = colors.green
+			if price_change_percent < 0 then
+				color = colors.red
+			end
+
+			ethereum:set({
+				label = {
+					string = current_price .. "$" .. " " .. price_change_percent .. "%",
+					color = color,
+				},
+			})
 		end
-
-		ethereum:set({
-			label = {
-				string = current_price .. "$" .. " " .. price_change_percent .. "%",
-				color = color,
-			},
-		})
 	end)
 end)
