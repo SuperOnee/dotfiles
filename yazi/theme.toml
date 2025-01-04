@@ -1,18 +1,18 @@
 [manager]
 cwd = { fg = "#94e2d5" }
 
-hovered         = { fg = "#1e1e2e", bg = "#f5c2e7" }
-preview_hovered = { fg = "#1e1e2e", bg = "#cdd6f4" }
+hovered         = { fg = "#1e1e2e", bg = "#f38ba8" }
+preview_hovered = { fg = "#1e1e2e", bg = "#f38ba8" }
 
-find_keyword  = { fg = "#f9e2af", italic = true }
+find_keyword  = { fg = "#d20f39", italic = true, bold = true }
 find_position = { fg = "#f5c2e7", bg = "reset", italic = true }
 
 marker_copied   = { fg = "#a6e3a1", bg = "#a6e3a1" }
 marker_cut      = { fg = "#f38ba8", bg = "#f38ba8" }
 marker_marked   = { fg = "#94e2d5", bg = "#94e2d5" }
-marker_selected = { fg = "#f5c2e7", bg = "#f5c2e7" }
+marker_selected = { fg = "#f5c2e7", bg = "#f38ba8" }
 
-tab_active   = { fg = "#1e1e2e", bg = "#cdd6f4" }
+tab_active   = { fg = "#1e1e2e", bg = "#a6e3a1" }
 tab_inactive = { fg = "#cdd6f4", bg = "#45475a" }
 tab_width    = 1
 
@@ -23,7 +23,7 @@ count_selected = { fg = "#1e1e2e", bg = "#f5c2e7" }
 border_symbol = "│"
 border_style  = { fg = "#7f849c" }
 
-syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme"
+syntect_theme = "~/.config/bat/themes/Catppuccin Mocha.tmTheme"
 
 [mode]
 normal_main = { fg = "#1e1e2e", bg = "#f5c2e7", bold = true }
@@ -746,4 +746,5 @@ exts = [
   { name = "v", text = "󰍛", fg = "#a6e3a1" },
   { name = "kicad_pro", text = "", fg = "#f5e0dc" },
   { name = "liquid", text = "", fg = "#a6e3a1" },
-  { name = "zip", text = "", fg = "#fab387" }, ]
+  { name = "zip", text = "", fg = "#fab387" },
+]

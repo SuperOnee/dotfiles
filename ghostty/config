@@ -1,6 +1,6 @@
 theme = catppuccin-mocha
-background-opacity = 0.85
-background-blur-radius = 5
+background-opacity = 0.92
+background-blur-radius = 15
 font-family = JetbrainsMono Nerd Font Mono
 font-size = 20
 shell-integration = zsh
@@ -20,3 +20,15 @@ auto-update = check
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>l=toggle_quick_terminal
 keybind = cmd+s>z=toggle_fullscreen
+
+# Shaders
+# custom-shader = ./shaders/bloom.glsl
+custom-shader = ./shaders/bloom025.glsl
+# custom-shader = ./shaders/bloom050.glsl
+# custom-shader = ./shaders/bloom075.glsl
+# custom-shader = ./shaders/crt.glsl
+# custom-shader = ./shaders/tft.glsl
+# custom-shader = ./shaders/cubes.glsl
+# custom-shader = ./shaders/water.glsl
+# custom-shader = ./shaders/spotlight.glsl
+
