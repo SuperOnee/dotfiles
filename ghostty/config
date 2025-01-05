@@ -23,8 +23,8 @@ keybind = cmd+s>z=toggle_fullscreen
 
 # Shaders
 # custom-shader = ./shaders/bloom.glsl
-custom-shader = ./shaders/bloom025.glsl
-# custom-shader = ./shaders/bloom050.glsl
+# custom-shader = ./shaders/bloom025.glsl
+custom-shader = ./shaders/bloom050.glsl
 # custom-shader = ./shaders/bloom075.glsl
 # custom-shader = ./shaders/crt.glsl
 # custom-shader = ./shaders/tft.glsl

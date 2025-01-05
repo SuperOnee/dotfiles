@@ -40,9 +40,6 @@ keymap.set('n', '<leader>ba', function()
   Snacks.bufdelete()
 end, { desc = 'Delete all buffers' })
 
--- Save file
-keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
-
 -- Map gj gk
 keymap.set('n', 'j', [[v:count?'j':'gj']], { noremap = true, expr = true })
 keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
@@ -59,3 +56,15 @@ end, opts)
 keymap.set({ 'i', 's' }, '<C-H>', function()
   ls.jump(-1)
 end, opts)
+
+keymap.set('n', '<leader>rr', function()
+  require('custom.codeRunner').runFile()
+end, { noremap = true, desc = 'Run current file[Personal]' })
+
+keymap.set('n', '<leader>rs', function()
+  require('custom.codeRunner').runServer()
+end, { noremap = true, desc = 'Run server[Personal]' })
+
+keymap.set('n', '<leader>rb', function()
+  require('custom.codeRunner').runBuild()
+end, { noremap = true, desc = 'Run build[Personal]' })
