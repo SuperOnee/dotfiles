@@ -70,6 +70,8 @@ func main() {
 		return
 	}
 
+	fmt.Println(string(body))
+
 	data := CryptoData{}
 	json.Unmarshal(body, &data)
 

@@ -109,6 +109,8 @@ alias dotn="cd ~/.config/nvim"
 alias of="open -a finder ."
 alias crypto="~/.config/script/crypto"
 alias build-crypto="go build ~/.config/script/crypto.go && mv crypto ~/.config/script/crypto"
+unalias z
+unalias y
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -160,6 +162,15 @@ _fzf_comprun() {
   esac
 }
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
@@ -167,3 +178,4 @@ export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
 export EDITOR=nvim
+eval "$(zoxide init zsh)"
