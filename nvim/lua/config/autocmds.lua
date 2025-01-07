@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'markdown' },
   callback = function()
     require('custom.markdownUtil')
-    print('markdown file detected')
   end,
 })
 
