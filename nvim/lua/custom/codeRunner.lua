@@ -26,6 +26,8 @@ M.runFile = function()
     cmd = 'go run ' .. file
   elseif ext == 'js' or ext == 'ts' then
     cmd = 'bun ' .. file
+  elseif ext == 'lua' then
+    cmd = 'lua ' .. file
   else
     Snacks.notify.error('Unsupported file type ' .. ext)
     return
