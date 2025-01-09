@@ -57,7 +57,7 @@ sbar.add("bracket", "widgets.crypto.bracket", { ethereum.name, bitcoin.name }, {
 })
 
 bitcoin:subscribe({ "routine" }, function()
-	sbar.exec("~/.config/script/crypto btc", function(res)
+	sbar.exec("~/.config/script/crypto/main btc", function(res)
 		if res then
 			local current_price = tonumber(res["currentPrice"])
 			local price_change_percent = tonumber(res["priceChangePercent"])
@@ -78,7 +78,7 @@ bitcoin:subscribe({ "routine" }, function()
 end)
 
 ethereum:subscribe({ "routine" }, function()
-	sbar.exec("~/.config/script/crypto eth", function(res)
+	sbar.exec("~/.config/script/crypto/main eth", function(res)
 		if res then
 			local current_price = tonumber(res["currentPrice"])
 			local price_change_percent = tonumber(res["priceChangePercent"])

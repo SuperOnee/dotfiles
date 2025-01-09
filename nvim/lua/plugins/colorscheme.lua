@@ -23,6 +23,7 @@ return {
           }
         end,
         integrations = {
+          overseer = true,
           snacks = true,
           dashboard = true,
           headlines = true,
