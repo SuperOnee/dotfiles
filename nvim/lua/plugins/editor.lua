@@ -155,6 +155,22 @@ return {
       {
         'zbirenbaum/copilot-cmp',
         opts = {},
+        keys = {
+          {
+            '<C-l>',
+            function()
+              require('luasnip').jump(1)
+            end,
+            mode = { 'i', 's' },
+          },
+          {
+            '<C-h>',
+            function()
+              require('luasnip').jump(-1)
+            end,
+            mode = { 'i', 's' },
+          },
+        },
         config = function(_, opts)
           local copilot_cmp = require('copilot_cmp')
           copilot_cmp.setup(opts)
@@ -180,7 +196,7 @@ return {
         },
       },
     },
-    opts = function(_, opts)
+    opts = function()
       local cmp = require('cmp')
       cmp.mapping.preset.insert({
         ['<C-l>'] = function(fallback)
@@ -270,59 +286,6 @@ return {
   -- {
   --   'saghen/blink.cmp',
   --   opts = {
-  --     sources = {
-  --       default = { 'copilot', 'lsp', 'path', 'snippets', 'luasnip', 'buffer', 'lazydev' },
-  --       compat = {},
-  --       cmdline = {},
-  --       providers = {
-  --         lsp = {
-  --           name = 'lsp',
-  --           enabled = true,
-  --           module = 'blink.cmp.sources.lsp',
-  --           kind = 'LSP',
-  --           should_show_items = true,
-  --           score_offset = 90,
-  --         },
-  --         luasnip = {
-  --           name = 'luasnip',
-  --           enabled = true,
-  --           module = 'blink.cmp.sources.luasnip',
-  --           should_show_items = true,
-  --           min_keyword_length = 1,
-  --           score_offset = 80,
-  --           fallbacks = { 'snippets' },
-  --         },
-  --         snippets = {
-  --           name = 'snippets',
-  --           enabled = true,
-  --           module = 'blink.cmp.sources.snippets',
-  --           min_keyword_length = 1,
-  --           score_offset = 70,
-  --         },
-  --         copilot = {
-  --           name = 'copilot',
-  --           enabled = true,
-  --           module = 'blink-cmp-copilot',
-  --           kind = 'Copilot',
-  --           score_offset = 10,
-  --           async = true,
-  --         },
-  --       },
-  --     },
-  --     snippets = {
-  --       expand = function(snippet, _)
-  --         require('luasnip').lsp_expand(snippet)
-  --       end,
-  --       active = function(filter)
-  --         if filter and filter.direction then
-  --           return require('luasnip').jumpable(filter.direction)
-  --         end
-  --         return require('luasnip').in_snippet()
-  --       end,
-  --       jump = function(direction)
-  --         require('luasnip').jump(direction)
-  --       end,
-  --     },
   --     completion = {
   --       documentation = {
   --         auto_show = true,
