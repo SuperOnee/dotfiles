@@ -99,7 +99,7 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = '<C-y>',
+          accept = '<C-i>',
           -- accept_word = '<C-h>',
           accept_line = '<C-j>',
           next = '<M-l>',
