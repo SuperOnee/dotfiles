@@ -66,6 +66,8 @@ return {
   -- buffer line
   {
     'akinsho/bufferline.nvim',
+    -- TODO: Icon not showing issue:  https://github.com/akinsho/bufferline.nvim/issues/990
+    version = '4.8.0',
     event = 'VeryLazy',
     opts = function(_, opt)
       local mocha = require('catppuccin.palettes').get_palette('mocha')
@@ -92,7 +94,6 @@ return {
         separator_style = 'none',
         show_buffer_close_icons = false,
         always_show_bufferline = true,
-        showkj_close_icon = false,
       }
     end,
     -- opts = {
