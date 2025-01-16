@@ -6,7 +6,8 @@ return {
         sections = {
           {
             section = 'terminal',
-            cmd = '~/.config/nvim/scripts/header.sh ~/.config/nvim/static/header.cat',
+            -- cmd = '~/.config/nvim/scripts/header.sh ~/.config/nvim/static/header.cat',
+            cmd = '~/.config/nvim/scripts/animation.sh',
             height = 14,
             indent = 16,
           },
