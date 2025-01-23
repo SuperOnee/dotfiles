@@ -70,9 +70,14 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z brew bun iterm2 gradle node npm yarn golang docker docker-compose vscode zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting fzf zsh-autocomplete)
-
+plugins=(git z brew bun iterm2 gradle node npm yarn golang docker docker-compose vscode fzf)
 source $ZSH/oh-my-zsh.sh
+
+# Custom plugsin
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # User configuration
 
