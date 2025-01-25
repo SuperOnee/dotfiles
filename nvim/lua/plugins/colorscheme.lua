@@ -70,11 +70,12 @@ return {
               BlinkCmpMenuSelection = { bg = colors.red, fg = colors.mantle },
               BlinkCmpScrollBarGutter = { bg = colors.surface2 },
               BlinkCmpScrollBarThumb = { bg = colors.peach },
+              CmpItemAbbrMatch = { bg = 'none', fg = colors.red },
               CmpItemMenu = { fg = colors.surface2 },
               Pmenu = { bg = 'black' },
               PmenuSel = { bg = colors.red, fg = colors.mantle },
               PmenuSbar = { bg = colors.surface2 },
-              PmenuThumb = { bg = colors.red },
+              PmenuThumb = { bg = colors.green },
               CursorLineNr = { fg = colors.green },
               FloatBorder = { bg = colors.none, fg = colors.pink }, -- colors.surface0 }, difficult to see
               GitSignsChange = { fg = colors.peach },
