@@ -78,49 +78,20 @@ return {
   -- Cmp
   {
     'hrsh7th/nvim-cmp',
-    dependencies = { -- this will only be evaluated if nvim-cmp is enabled
+    keys = {
       {
-        'zbirenbaum/copilot-cmp',
-        opts = {},
-        keys = {
-          {
-            '<C-l>',
-            function()
-              require('luasnip').jump(1)
-            end,
-            mode = { 'i', 's' },
-          },
-          {
-            '<C-h>',
-            function()
-              require('luasnip').jump(-1)
-            end,
-            mode = { 'i', 's' },
-          },
-        },
-        config = function(_, opts)
-          local copilot_cmp = require('copilot_cmp')
-          copilot_cmp.setup(opts)
-          -- attach cmp source whenever copilot attaches
-          -- fixes lazy-loading issues with the copilot cmp source
-          LazyVim.lsp.on_attach(function()
-            copilot_cmp._on_insert_enter({})
-          end, 'copilot')
+        '<C-l>',
+        function()
+          require('luasnip').jump(1)
         end,
-        specs = {
-          {
-            'hrsh7th/nvim-cmp',
-            optional = true,
-            ---@param opts cmp.ConfigSchema
-            opts = function(_, opts)
-              table.insert(opts.sources, 1, {
-                name = 'copilot',
-                group_index = 1,
-                priority = 100,
-              })
-            end,
-          },
-        },
+        mode = { 'i', 's' },
+      },
+      {
+        '<C-h>',
+        function()
+          require('luasnip').jump(-1)
+        end,
+        mode = { 'i', 's' },
       },
     },
     opts = function(_, opts)
