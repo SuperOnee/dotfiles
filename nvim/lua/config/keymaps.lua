@@ -32,9 +32,6 @@ keymap.set('n', 'G', 'Gzz', { remap = true })
 keymap.set('n', '+', '<C-a>')
 keymap.set('n', '-', '<C-x>')
 
--- Buffers
--- keymap.set('n', '<leader>bd', REMOVE_CURRENT_BUFFER, { remap = true, silent = true })
-
 keymap.set('n', '<leader>ba', function()
   vim.cmd('BufferLineCloseOthers')
   Snacks.bufdelete()
@@ -46,16 +43,6 @@ keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
 
 -- Select all text in current file
 keymap.set('n', '<C-a>', 'gg<S-v>G')
-
--- local ls = require('luasnip')
---
--- keymap.set({ 'i', 's' }, '<C-L>', function()
---   ls.jump(1)
--- end, opts)
---
--- keymap.set({ 'i', 's' }, '<C-H>', function()
---   ls.jump(-1)
--- end, opts)
 
 keymap.set('n', '<leader>rr', function()
   require('custom.codeRunner').runFile()

@@ -73,7 +73,7 @@ return {
               CmpItemAbbrMatch = { bg = 'none', fg = colors.red },
               CmpItemMenu = { fg = colors.surface2 },
               Pmenu = { bg = 'black' },
-              PmenuSel = { bg = colors.red, fg = colors.mantle },
+              PmenuSel = { bg = colors.surface1 },
               PmenuSbar = { bg = colors.surface2 },
               PmenuThumb = { bg = colors.green },
               CursorLineNr = { fg = colors.green },

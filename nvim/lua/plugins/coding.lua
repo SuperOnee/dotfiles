@@ -12,6 +12,7 @@ return {
     opts = {
       user_default_options = {
         tailwind = true,
+        always_update = true,
       },
     },
   },
@@ -75,6 +76,13 @@ return {
       })
     end,
   },
+  {
+    'rafamadriz/friendly-snippets',
+    config = function()
+      require('luasnip.loaders.from_vscode').lazy_load()
+      require('luasnip.loaders.from_snipmate').lazy_load()
+    end,
+  },
   -- Cmp
   {
     'hrsh7th/nvim-cmp',
@@ -106,17 +114,17 @@ return {
       })
       opts.formatting = {
         fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          local icon = LazyVim.config.icons.kinds[vim_item.kind]
+        format = function(entry, item)
+          local icon = LazyVim.config.icons.kinds[item.kind]
           if icon then
-            vim_item.kind = icon
+            item.kind = icon
           end
           local highlights_info = require('colorful-menu').cmp_highlights(entry)
           if highlights_info ~= nil then
-            vim_item.abbr_hl_group = highlights_info.highlights
-            vim_item.abbr = highlights_info.text
+            item.abbr_hl_group = highlights_info.highlights
+            item.abbr = highlights_info.text
           end
-          return vim_item
+          return item
         end,
       }
     end,
