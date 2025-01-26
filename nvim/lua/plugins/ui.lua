@@ -73,26 +73,31 @@ return {
         styles = { 'italic', 'bold', 'underline' },
         custom = {
           mocha = {
-            background = { fg = mocha.text },
-            indicator_selected = {
+            background = { fg = mocha.text, sp = mocha.red },
+            tab_selected = {
               fg = mocha.green,
-              sp = mocha.red,
+              underline = true,
+            },
+            indicator_selected = {
+              bold = true,
+              underline = true,
             },
             buffer_selected = {
               fg = mocha.green,
-              sp = mocha.red,
+              bold = true,
+              italic = true,
+              underline = true,
             },
           },
         },
       })
-      opt.options = {
-        indicator = {
-          style = 'none',
-        },
-        separator_style = 'none',
-        show_buffer_close_icons = false,
-        always_show_bufferline = true,
+      opt.options.indicator = {
+        style = 'underline',
       }
+
+      opt.options.separator_style = 'none'
+      opt.options.show_buffer_close_icons = false
+      opt.options.always_show_bufferline = true
     end,
     -- opts = {
     --   highlights = require('catppuccin.groups.integrations.bufferline').get({

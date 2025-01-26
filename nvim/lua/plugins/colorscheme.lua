@@ -64,6 +64,7 @@ return {
         highlight_overrides = {
           mocha = function(colors)
             return {
+              TabLineSel = { bg = colors.red },
               BlinkCmpMenu = { bg = 'black' },
               BlinkCmpLabel = { bg = colors.none, fg = colors.peach },
               BlinkCmpKind = { bg = colors.none, fg = colors.none },
