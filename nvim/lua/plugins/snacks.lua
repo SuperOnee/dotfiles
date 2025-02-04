@@ -1,6 +1,7 @@
 return {
   {
-    'snacks.nvim',
+    'folke/snacks.nvim',
+    --- @type snacks.Config
     opts = {
       dashboard = {
         sections = {
@@ -39,6 +40,84 @@ return {
           },
           { pane = 2, section = 'startup' },
         },
+      },
+      picker = {
+        sources = {
+          files = {
+            hidden = true,
+          },
+          lsp_symbols = {
+            filter = {
+              vue = true,
+              markdown = true,
+              html = true,
+            },
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        '<leader>;',
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = 'Resume[Custom]',
+      },
+      {
+        '<leader>fl',
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = 'Lines[Custom]',
+      },
+      {
+        '<leader>fz',
+        function()
+          Snacks.picker.zoxide()
+        end,
+        desc = 'Zoxide[Custom]',
+      },
+      {
+        '<leader>fr',
+        function()
+          Snacks.picker.recent({
+            filter = {
+              cwd = true,
+            },
+            live = true,
+          })
+        end,
+        desc = 'Recent (cwd)[Custom]',
+      },
+      {
+        '<leader>fR',
+        function()
+          Snacks.picker.recent({
+            filter = {
+              cwd = false,
+            },
+            live = true,
+          })
+        end,
+        desc = 'Recent (all)[Custom]',
+      },
+      {
+        '<leader>fp',
+        function()
+          local folders = { '~/Work', '~/Code' }
+          for _, v in ipairs(vim.fn.globpath('~/Work', '*', true, true)) do
+            if vim.fn.isdirectory(v) == 1 then
+              table.insert(folders, v)
+            end
+          end
+          Snacks.picker.projects({
+            finder = 'recent_projects',
+            dev = folders,
+            confirm = 'load_session',
+          })
+        end,
+        desc = 'Projects[Custom]',
       },
     },
   },

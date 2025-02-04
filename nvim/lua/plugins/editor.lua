@@ -51,7 +51,7 @@ return {
       -- 👇 in this section, choose your own keymappings!
       {
         '<leader>e',
-        '<cmd>Yazi<cr>',
+        '<cmd>Yazi toggle<cr>',
         desc = 'Open yazi at the current file',
       },
       {

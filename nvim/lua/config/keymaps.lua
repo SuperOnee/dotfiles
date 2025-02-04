@@ -35,7 +35,7 @@ keymap.set('n', '-', '<C-x>')
 keymap.set('n', '<leader>ba', function()
   vim.cmd('BufferLineCloseOthers')
   Snacks.bufdelete()
-end, { desc = 'Delete all buffers' })
+end, { desc = 'Delete all buffers[Custom]' })
 
 -- Map gj gk
 keymap.set('n', 'j', [[v:count?'j':'gj']], { noremap = true, expr = true })
@@ -43,15 +43,3 @@ keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
 
 -- Select all text in current file
 keymap.set('n', '<C-a>', 'gg<S-v>G')
-
-keymap.set('n', '<leader>rr', function()
-  require('custom.codeRunner').runFile()
-end, { noremap = true, desc = 'Run current file[Personal]' })
-
-keymap.set('n', '<leader>rs', function()
-  require('custom.codeRunner').runServer()
-end, { noremap = true, desc = 'Run server[Personal]' })
-
-keymap.set('n', '<leader>rb', function()
-  require('custom.codeRunner').runBuild()
-end, { noremap = true, desc = 'Run build[Personal]' })

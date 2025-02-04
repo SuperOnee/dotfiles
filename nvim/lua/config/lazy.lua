@@ -118,6 +118,7 @@ require('lazy').setup({
     -- Editor
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
     { import = 'lazyvim.plugins.extras.editor.overseer' },
+    { import = 'lazyvim.plugins.extras.editor.snacks_picker' },
     -- Dap
     { import = 'lazyvim.plugins.extras.dap.core' },
     -- { import = 'lazyvim.plugins.extras.editor.fzf' },
