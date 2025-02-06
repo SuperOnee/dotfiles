@@ -5,6 +5,11 @@ end
 # Homebrew path
 set -Ux PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/local/sbin $PATH
 
+# Path variables
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
 # Gretting message
 set -U fish_greeting
 
