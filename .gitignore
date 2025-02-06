@@ -13,3 +13,7 @@ iterm2
 .zsh_sessions
 github-copilot
 cava
+fish/functions
+fish/conf.d
+fish/completions
+fish_variables
