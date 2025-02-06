@@ -4,8 +4,10 @@
 after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 # Notify Sketchybar about focus change
@@ -71,7 +73,7 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-name-regex-substring = 'safari'
 run = 'layout floating'
- 
+
 [[on-window-detected]]
 if.app-name-regex-substring = 'camera'
 run = 'layout floating'
@@ -88,6 +90,10 @@ run = 'layout floating'
 if.app-name-regex-substring = 'discord'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'chatgpt'
+run = 'layout floating'
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -102,11 +108,11 @@ preset = 'qwerty'
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 15
-inner.vertical =   15
-outer.left =       20
-outer.bottom =     20
+inner.vertical = 15
+outer.left = 20
+outer.bottom = 20
 outer.top = [{ monitor."built-in" = 20 }, 50]
-outer.right =      20
+outer.right = 20
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -205,7 +211,10 @@ alt-r = 'exec-and-forget open -a /Applications/Shadowrocket.app'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 [mode.apps.binding]
