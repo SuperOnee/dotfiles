@@ -9,6 +9,7 @@ return {
   },
   {
     'NvChad/nvim-colorizer.lua',
+    event = 'VeryLazy',
     opts = {
       user_default_options = {
         tailwind = true,
@@ -19,6 +20,7 @@ return {
   -- Copilot
   {
     'zbirenbaum/copilot.lua',
+    event = 'VeryLazy',
     cmd = 'Copilot',
     build = ':Copilot auth',
     opts = {
@@ -62,6 +64,7 @@ return {
   -- cmdline
   {
     'hrsh7th/cmp-cmdline',
+    event = 'VeryLazy',
     config = function()
       local cmp = require('cmp')
       cmp.setup.cmdline(':', {
@@ -78,6 +81,7 @@ return {
   },
   {
     'rafamadriz/friendly-snippets',
+    event = 'VeryLazy',
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_snipmate').lazy_load()
@@ -86,6 +90,7 @@ return {
   -- Cmp
   {
     'hrsh7th/nvim-cmp',
+    event = 'VeryLazy',
     keys = {
       {
         '<C-l>',
@@ -131,6 +136,7 @@ return {
   },
   {
     'xzbdmw/colorful-menu.nvim',
+    event = 'VeryLazy',
     config = function()
       -- You don't need to set these options.
       require('colorful-menu').setup({
@@ -195,31 +201,7 @@ return {
       })
     end,
   },
-  -- Blink
-  -- TODO: uncomment this code block when the issue is fixed, stick with nvim.cmp for now
+  -- Blink issue tracking
+  -- TODO: add blink config when the issue is closed, stick with nvim.cmp for now
   -- https://github.com/Saghen/blink.cmp/issues/657
-  -- {
-  --   'saghen/blink.cmp',
-  --   opts = {
-  --     completion = {
-  --       documentation = {
-  --         auto_show = true,
-  --         auto_show_delay_ms = 0,
-  --         window = {
-  --           border = 'rounded',
-  --         },
-  --       },
-  --     },
-  --     signature = {
-  --       window = { border = 'rounded' },
-  --     },
-  --     keymap = {
-  --       preset = 'enter',
-  --       ['<Tab>'] = { 'snippet_forward', 'fallback' },
-  --       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-  --       ['<C-l>'] = { 'snippet_forward', 'fallback' },
-  --       ['<C-h>'] = { 'snippet_backward', 'fallback' },
-  --     },
-  --   },
-  -- },
 }

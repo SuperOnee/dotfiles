@@ -55,8 +55,22 @@ return {
           },
         },
       },
+      animate = {
+        fps = 120,
+      },
     },
     keys = {
+      {
+        '<leader><leader>',
+        function()
+          Snacks.picker.files({
+            layout = {
+              preset = 'select',
+            },
+          })
+        end,
+        desc = 'Files[Custom]',
+      },
       {
         '<leader>;',
         function()

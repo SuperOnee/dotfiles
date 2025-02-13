@@ -96,7 +96,6 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.toml' },
     { import = 'lazyvim.plugins.extras.lang.go' },
     { import = 'lazyvim.plugins.extras.lang.python' },
-    { import = 'lazyvim.plugins.extras.lang.tailwind' },
     { import = 'lazyvim.plugins.extras.lang.docker' },
     { import = 'lazyvim.plugins.extras.lang.sql' },
     -- Coding
@@ -106,6 +105,7 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
     { import = 'lazyvim.plugins.extras.coding.luasnip' },
     { import = 'lazyvim.plugins.extras.coding.yanky' },
+    { import = 'lazyvim.plugins.extras.coding.neogen' },
     -- nvim cmp
     { import = 'lazyvim.plugins.extras.coding.nvim-cmp' },
     -- Ai
@@ -114,7 +114,6 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
     -- UI
     { import = 'lazyvim.plugins.extras.ui.mini-indentscope' },
-    { import = 'lazyvim.plugins.extras.ui.mini-animate' },
     -- Editor
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
     { import = 'lazyvim.plugins.extras.editor.overseer' },

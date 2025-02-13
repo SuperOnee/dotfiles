@@ -129,10 +129,12 @@ return {
   -- Tmux Navigator
   {
     'christoomey/vim-tmux-navigator',
+    event = 'VeryLazy',
   },
   -- Mini indentscope config overwrite
   {
     'echasnovski/mini.indentscope',
+    event = 'VeryLazy',
     opts = {
       symbol = '┊',
       options = { try_as_border = true, border = 'both', indent_at_cursor = true },
@@ -140,6 +142,7 @@ return {
   },
   {
     '3rd/image.nvim',
+    event = 'VeryLazy',
     build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
     opts = {
       integrations = {
@@ -170,7 +173,7 @@ return {
         -- Make sure you have an html treesitter parser installed
         -- ~/github/dotfiles-latest/neovim/nvim-lazyvim/lua/plugins/treesitter.lua
         html = {
-          enabled = true,
+          enabled = false,
           clear_in_insert_mode = false,
           download_remote_images = false,
           only_render_image_at_cursor = true,
@@ -180,7 +183,7 @@ return {
         -- Make sure you have a css treesitter parser installed
         -- ~/github/dotfiles-latest/neovim/nvim-lazyvim/lua/plugins/treesitter.lua
         css = {
-          enabled = true,
+          enabled = false,
           clear_in_insert_mode = false,
           download_remote_images = false,
           only_render_image_at_cursor = true,
@@ -213,6 +216,7 @@ return {
   -- overseer
   {
     'stevearc/overseer.nvim',
+    event = 'VeryLazy',
     opts = {
       templates = { 'builtin', 'user.run_script' },
     },

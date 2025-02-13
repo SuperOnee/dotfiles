@@ -57,12 +57,6 @@ return {
       opts.presets.lsp_doc_border = true
     end,
   },
-  {
-    'rcarriga/nvim-notify',
-    opts = {
-      timeout = 5000,
-    },
-  },
   -- buffer line
   {
     'akinsho/bufferline.nvim',
@@ -122,15 +116,5 @@ return {
     --     showkj_close_icon = false,
     --   },
     -- },
-  },
-  {
-    'echasnovski/mini.animate',
-    recommended = true,
-    event = 'VeryLazy',
-    opts = {
-      scroll = { enable = false },
-      open = { enable = false },
-      close = { enable = false },
-    },
   },
 }
