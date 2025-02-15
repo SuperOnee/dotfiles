@@ -34,10 +34,6 @@ alias ran "go run ~/.config/script/random/main.go"
 alias rani "go run ~/.config/script/random_item/main.go"
 alias ls "eza --color=always --long --git --icons=always --no-user --no-permissions"
 
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # Fzf
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
