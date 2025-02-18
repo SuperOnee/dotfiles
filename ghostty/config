@@ -15,7 +15,8 @@ window-padding-y = 10
 window-padding-balance = true
 macos-non-native-fullscreen = true
 auto-update = check
-cursor-color=#a6e3a1
+cursor-color= #a6e3a1
+cursor-style-blink = true
 cursor-text=#11111b
 
 # Keybindings
