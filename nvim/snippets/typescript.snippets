@@ -1,6 +1,11 @@
 snippet cl console.log[custom]
 	console.log(${1})
 
+snippet cf constFunction[custom]
+  const ${1} = (${2})${3} => {
+    ${4}
+  }
+
 snippet epf exportFunction[custom]
 	export const ${1} = (${2})${3} => {
 		${4}
@@ -14,3 +19,11 @@ snippet epi exportInterface[custom]
 		${2}
 	}
 
+snippet com exportReactComponent[custom]
+  const ${1} = (${2}) => {
+    return (
+      ${3}
+    )
+  }
+
+  export default ${1}

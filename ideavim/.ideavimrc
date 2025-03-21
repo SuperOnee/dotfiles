@@ -52,7 +52,7 @@ vnoremap C "_C
 " ================================================================================================
 " = copilot ai Keymaps =====================================
 " ================================================================================================
-imap <C-l> <Action>(copilot.applyInlays)
+imap <C-i> <Action>(copilot.applyInlays)
 imap <C-h> <Action>(copilot.applyInlaysNextWord)
 imap <C-j> <Action>(copilot.applyInlaysNextLine)
 imap <M-l> <Action>(copilot.cycleNextInlays)

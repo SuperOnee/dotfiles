@@ -83,6 +83,7 @@ return {
     'rafamadriz/friendly-snippets',
     event = 'VeryLazy',
     config = function()
+      require('luasnip').filetype_extend('typescriptreact', { 'typescript' })
       require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_snipmate').lazy_load()
     end,
