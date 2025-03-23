@@ -43,6 +43,18 @@ func main() {
 	}
 	symbol := os.Args[1]
 
+	decimals := 0
+
+	if len(os.Args) >= 2 {
+		num, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+			fmt.Println("Error: ", err)
+			return
+		}
+
+		decimals = num
+	}
+
 	if symbol == "" {
 		fmt.Println("Error: symbol is required")
 		return
@@ -85,11 +97,20 @@ func main() {
 		return
 	}
 
+	currentPriceRes := ""
+
+	if decimals > 0 {
+		formatStr := fmt.Sprintf("%%.%df", decimals)
+		currentPriceRes = fmt.Sprintf(formatStr, lastPrice)
+	} else {
+		currentPriceRes = fmt.Sprintf("%d", int(lastPrice))
+	}
+
 	PriceChangeRes := struct {
 		CurrentPrice       string `json:"currentPrice"`
 		PriceChangePercent string `json:"priceChangePercent"`
 	}{
-		CurrentPrice:       fmt.Sprintf("%d", int(lastPrice)),
+		CurrentPrice:       currentPriceRes,
 		PriceChangePercent: fmt.Sprintf("%.2f", priceChangePercent),
 	}
 

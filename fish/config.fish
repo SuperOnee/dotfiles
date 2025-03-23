@@ -33,6 +33,9 @@ alias crypto "go run ~/.config/script/crypto/main.go"
 alias ran "go run ~/.config/script/random/main.go"
 alias rani "go run ~/.config/script/random_item/main.go"
 alias ls "eza --color=always --long --git --icons=always --no-user --no-permissions"
+alias ss "source ~/.config/fish/config.fish"
+# Tmux attach
+alias ta "tmux attach"
 
 # Fzf
 export FZF_DEFAULT_OPTS=" \
