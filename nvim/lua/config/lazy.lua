@@ -112,8 +112,6 @@ require('lazy').setup({
     -- { import = 'lazyvim.plugins.extras.ai.codeium' },
     { import = 'lazyvim.plugins.extras.ai.copilot' },
     { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
-    -- UI
-    { import = 'lazyvim.plugins.extras.ui.mini-indentscope' },
     -- Editor
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
     { import = 'lazyvim.plugins.extras.editor.overseer' },

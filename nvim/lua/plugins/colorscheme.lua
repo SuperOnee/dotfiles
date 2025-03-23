@@ -54,16 +54,13 @@ return {
           navic = { enabled = true, custom_bg = 'lualine' },
           treesitter_context = true,
           notify = true,
-          mini = {
-            enabled = true,
-            indentscope_color = 'pink',
-          },
           which_key = true,
           semantic_tokens = true,
         },
         highlight_overrides = {
           mocha = function(colors)
             return {
+              SnacksIndentScope = { bg = colors.none, fg = colors.red },
               WinSeparator = { bg = colors.none, fg = colors.pink },
               TabLineSel = { bg = colors.red },
               BlinkCmpMenu = { bg = 'black' },

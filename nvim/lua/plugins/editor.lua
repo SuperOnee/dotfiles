@@ -87,15 +87,6 @@ return {
     'christoomey/vim-tmux-navigator',
     event = 'VeryLazy',
   },
-  -- Mini indentscope config overwrite
-  {
-    'echasnovski/mini.indentscope',
-    event = 'VeryLazy',
-    opts = {
-      symbol = '┊',
-      options = { try_as_border = true, border = 'both', indent_at_cursor = true },
-    },
-  },
   -- overseer
   {
     'stevearc/overseer.nvim',

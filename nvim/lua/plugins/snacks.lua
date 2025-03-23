@@ -111,6 +111,20 @@ return {
         },
         env = {},
       },
+      ---@class snacks.indent.Config
+      indent = {
+        priority = 1,
+        scope = {
+          enabled = true,
+          char = '┊',
+          hl = 'SnacksIndentScope',
+        },
+        enabled = true,
+        char = '┊',
+        only_scope = false,
+        only_current = false,
+        hl = 'SnacksIndent',
+      },
     },
     keys = {
       {
