@@ -61,85 +61,139 @@ local crypto_bracket = sbar.add(
 
 local bnb_popup = sbar.add("item", {
 	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/bnb.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
 	icon = {
+		width = 70,
 		string = "BNB",
-		width = 60,
+		padding_left = 25,
 		align = "left",
 	},
 	label = {
+		width = 110,
 		string = "loading...",
-		width = 100,
-		align = "right",
-	},
-})
-
-local sol_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	icon = {
-		string = "SOL",
-		width = 60,
-		align = "left",
-	},
-	label = {
-		string = "loading...",
-		width = 100,
-		align = "right",
-	},
-})
-
-local xrp_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	icon = {
-		string = "XRP",
-		width = 60,
-		align = "left",
-	},
-	label = {
-		string = "loading...",
-		width = 100,
-		align = "right",
-	},
-})
-
-local ton_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	icon = {
-		string = "TON",
-		width = 60,
-		align = "left",
-	},
-	label = {
-		string = "loading...",
-		width = 100,
+		padding_left = 6,
 		align = "right",
 	},
 })
 
 local doge_popup = sbar.add("item", {
 	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/doge.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
 	icon = {
 		string = "DOGE",
-		width = 60,
+		width = 70,
 		align = "left",
+		padding_left = 25,
 	},
 	label = {
 		string = "loading...",
-		width = 100,
+		width = 110,
 		align = "right",
+		padding_left = 6,
+	},
+})
+
+local sol_popup = sbar.add("item", {
+	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/sol.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
+	icon = {
+		string = "SOL",
+		width = 70,
+		align = "left",
+		padding_left = 25,
+	},
+	label = {
+		string = "loading...",
+		width = 110,
+		align = "right",
+		padding_left = 6,
+	},
+})
+
+local xrp_popup = sbar.add("item", {
+	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/xrp.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
+	icon = {
+		string = "XRP",
+		width = 70,
+		align = "left",
+		padding_left = 25,
+	},
+	label = {
+		string = "loading...",
+		width = 110,
+		align = "right",
+		padding_left = 6,
+	},
+})
+
+local ton_popup = sbar.add("item", {
+	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/ton.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
+	icon = {
+		string = "TON",
+		width = 70,
+		align = "left",
+		padding_left = 25,
+	},
+	label = {
+		string = "loading...",
+		width = 110,
+		align = "right",
+		padding_left = 6,
 	},
 })
 
 local pol_popup = sbar.add("item", {
 	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/pol.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
 	icon = {
 		string = "POL",
-		width = 60,
+		width = 70,
 		align = "left",
+		padding_left = 25,
 	},
 	label = {
 		string = "loading...",
-		width = 100,
+		width = 110,
 		align = "right",
+		padding_left = 6,
 	},
 })
 
@@ -182,6 +236,34 @@ local toggle_popup = function()
 		crypto_bracket:set({ popup = { drawing = false } })
 	end
 end
+
+local open_cmc = function(crypto_symbol)
+	sbar.exec("open https://coinmarketcap.com/currencies/" .. crypto_symbol)
+end
+
+bnb_popup:subscribe("mouse.clicked", function()
+	open_cmc("bnb")
+end)
+
+doge_popup:subscribe("mouse.clicked", function()
+	open_cmc("dogecoin")
+end)
+
+sol_popup:subscribe("mouse.clicked", function()
+	open_cmc("solana")
+end)
+
+xrp_popup:subscribe("mouse.clicked", function()
+	open_cmc("xrp")
+end)
+
+ton_popup:subscribe("mouse.clicked", function()
+	open_cmc("toncoin")
+end)
+
+pol_popup:subscribe("mouse.clicked", function()
+	open_cmc("polygon-ecosystem-token")
+end)
 
 bitcoin:subscribe("mouse.clicked", function()
 	toggle_popup()
