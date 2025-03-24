@@ -37,7 +37,7 @@ type CryptoData struct {
 
 func main() {
 	// get symbol from command line
-	if len(os.Args) <= 1 {
+	if len(os.Args) < 2 {
 		fmt.Println("Error: symbol is required")
 		return
 	}
@@ -45,7 +45,7 @@ func main() {
 
 	decimals := 0
 
-	if len(os.Args) >= 2 {
+	if len(os.Args) >= 3 {
 		num, err := strconv.Atoi(os.Args[2])
 		if err != nil {
 			fmt.Println("Error: ", err)
