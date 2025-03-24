@@ -218,11 +218,11 @@ local refresh_item = function(symbol, decimals, item)
 	end)
 end
 
-local load_details = function()
-	refresh_item("bnb", 2, bnb_popup)
-	refresh_item("sol", 2, sol_popup)
-	refresh_item("xrp", 2, xrp_popup)
-	refresh_item("ton", 2, ton_popup)
+local refresh_crypto_list = function()
+	refresh_item("bnb", 3, bnb_popup)
+	refresh_item("sol", 3, sol_popup)
+	refresh_item("xrp", 3, xrp_popup)
+	refresh_item("ton", 3, ton_popup)
 	refresh_item("doge", 4, doge_popup)
 	refresh_item("pol", 4, pol_popup)
 end
@@ -231,7 +231,7 @@ local toggle_popup = function()
 	local should_draw = crypto_bracket:query().popup.drawing == "off"
 	if should_draw then
 		crypto_bracket:set({ popup = { drawing = true } })
-		load_details()
+		refresh_crypto_list()
 	else
 		crypto_bracket:set({ popup = { drawing = false } })
 	end
@@ -275,6 +275,10 @@ end)
 
 bitcoin:subscribe({ "routine" }, function()
 	refresh_item("btc", 0, bitcoin)
+	local popup_drawing = crypto_bracket:query().popup.drawing == "on"
+	if popup_drawing then
+		refresh_crypto_list()
+	end
 end)
 
 ethereum:subscribe({ "routine" }, function()
