@@ -151,6 +151,52 @@ local xrp_popup = sbar.add("item", {
 	},
 })
 
+local ada_popup = sbar.add("item", {
+	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/ada.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
+	icon = {
+		string = "ADA",
+		width = 70,
+		align = "left",
+		padding_left = 25,
+	},
+	label = {
+		string = "loading...",
+		width = 110,
+		align = "right",
+		padding_left = 6,
+	},
+})
+
+local sui_popup = sbar.add("item", {
+	position = "popup." .. crypto_bracket.name,
+	background = {
+		image = {
+			string = "~/.config/sketchybar/icons/sui.png",
+			scale = 0.33,
+		},
+		color = colors.transparent,
+	},
+	icon = {
+		string = "SUI",
+		width = 70,
+		align = "left",
+		padding_left = 25,
+	},
+	label = {
+		string = "loading...",
+		width = 110,
+		align = "right",
+		padding_left = 6,
+	},
+})
+
 local ton_popup = sbar.add("item", {
 	position = "popup." .. crypto_bracket.name,
 	background = {
@@ -222,6 +268,8 @@ local refresh_crypto_list = function()
 	refresh_item("bnb", 3, bnb_popup)
 	refresh_item("sol", 3, sol_popup)
 	refresh_item("xrp", 3, xrp_popup)
+	refresh_item("sui", 3, sui_popup)
+	refresh_item("ada", 4, ada_popup)
 	refresh_item("ton", 3, ton_popup)
 	refresh_item("doge", 4, doge_popup)
 	refresh_item("pol", 4, pol_popup)
@@ -255,6 +303,14 @@ end)
 
 xrp_popup:subscribe("mouse.clicked", function()
 	open_cmc("xrp")
+end)
+
+ada_popup:subscribe("mouse.clicked", function()
+	open_cmc("cardano")
+end)
+
+sui_popup:subscribe("mouse.clicked", function()
+	open_cmc("sui")
 end)
 
 ton_popup:subscribe("mouse.clicked", function()
