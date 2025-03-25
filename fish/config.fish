@@ -34,8 +34,12 @@ alias ran "go run ~/.config/script/random/main.go"
 alias rani "go run ~/.config/script/random_item/main.go"
 alias ls "eza --color=always --long --git --icons=always --no-user --no-permissions"
 alias ss "source ~/.config/fish/config.fish"
-# Tmux attach
+# Tmux
 alias ta "tmux attach"
+alias tmux-sessionizer "~/.config/script/tmux-sessionizer"
+
+set PATH "$PATH":"$HOME/.config/script/tmux-sessionizer"
+bind \cf tmux-sessionizer
 
 # Fzf
 export FZF_DEFAULT_OPTS=" \
