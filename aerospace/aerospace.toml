@@ -194,6 +194,7 @@ alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
 alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
 alt-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+alt-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
 
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -204,10 +205,10 @@ alt-shift-enter = 'mode apps'
 
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-c = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
-alt-i = 'exec-and-forget open -a /Applications/IntelliJ\ IDEA.app'
 alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
 alt-r = 'exec-and-forget open -a /Applications/Shadowrocket.app'
+alt-p = 'exec-and-forget open -a /Applications/ChatGPT.app'
 
 
 # 'service' binding mode declaration.
