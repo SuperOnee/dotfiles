@@ -36,7 +36,7 @@ vim.opt.spelloptions:append('camel')
 vim.g.lazyvim_python_lsp = 'pyright'
 vim.g.lazyvim_python_ruff = 'ruff'
 -- cmp selection
-vim.g.lazyvim_cmp = 'nvim-cmp'
+-- vim.g.lazyvim_cmp = 'nvim-cmp'
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

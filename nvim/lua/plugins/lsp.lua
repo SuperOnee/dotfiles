@@ -32,7 +32,6 @@ return {
             'svelte',
             'pug',
             'typescriptreact',
-            'vue',
           },
         },
         cssls = {

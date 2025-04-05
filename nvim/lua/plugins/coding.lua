@@ -61,24 +61,7 @@ return {
   --     },
   --   },
   -- },
-  -- cmdline
-  {
-    'hrsh7th/cmp-cmdline',
-    event = 'VeryLazy',
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline({
-          ['<C-l>'] = { c = cmp.mapping.confirm({ select = false }) },
-        }),
-        sources = cmp.config.sources({
-          { name = 'path' },
-        }, {
-          { name = 'cmdline' },
-        }),
-      })
-    end,
-  },
+  -- Friendly Snippets
   {
     'rafamadriz/friendly-snippets',
     event = 'VeryLazy',
@@ -88,53 +71,7 @@ return {
       require('luasnip.loaders.from_snipmate').lazy_load()
     end,
   },
-  -- Cmp
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'VeryLazy',
-    keys = {
-      {
-        '<C-l>',
-        function()
-          require('luasnip').jump(1)
-        end,
-        mode = { 'i', 's' },
-      },
-      {
-        '<C-h>',
-        function()
-          require('luasnip').jump(-1)
-        end,
-        mode = { 'i', 's' },
-      },
-    },
-    opts = function(_, opts)
-      local cmp = require('cmp')
-      cmp.mapping.preset.insert({
-        ['<C-l>'] = function(fallback)
-          return LazyVim.cmp.map({ 'snippet_forward' }, fallback)()
-        end,
-        ['<C-h>'] = function(fallback)
-          return LazyVim.cmp.map({ 'snippet_backward' }, fallback)()
-        end,
-      })
-      opts.formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, item)
-          local icon = LazyVim.config.icons.kinds[item.kind]
-          if icon then
-            item.kind = icon
-          end
-          local highlights_info = require('colorful-menu').cmp_highlights(entry)
-          if highlights_info ~= nil then
-            item.abbr_hl_group = highlights_info.highlights
-            item.abbr = highlights_info.text
-          end
-          return item
-        end,
-      }
-    end,
-  },
+  -- Cmp colorful menu
   {
     'xzbdmw/colorful-menu.nvim',
     event = 'VeryLazy',
@@ -202,7 +139,41 @@ return {
       })
     end,
   },
-  -- Blink issue tracking
-  -- TODO: add blink config when the issue is closed, stick with nvim.cmp for now
-  -- https://github.com/Saghen/blink.cmp/issues/657
+  -- Blink Cmp
+  {
+    'saghen/blink.cmp',
+    opts = function(_, opts)
+      opts.completion = {
+        menu = {
+          draw = {
+            columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+            components = {
+              label = {
+                text = function(ctx)
+                  return require('colorful-menu').blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require('colorful-menu').blink_components_highlight(ctx)
+                end,
+              },
+            },
+          },
+        },
+      }
+      opts.cmdline = {
+        enabled = true,
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
+      }
+      opts.keymap = {
+        preset = 'enter',
+        ['<C-y>'] = { 'select_and_accept' },
+        ['<C-l>'] = { 'snippet_forward', 'fallback' },
+        ['<C-h>'] = { 'snippet_backward', 'fallback' },
+      }
+    end,
+  },
 }
