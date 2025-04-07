@@ -1,4 +1,3 @@
--- local blink_trigger_char = ';'
 return {
   {
     'simrat39/symbols-outline.nvim',
@@ -65,7 +64,6 @@ return {
   -- Friendly Snippets
   {
     'rafamadriz/friendly-snippets',
-    event = 'VeryLazy',
     config = function()
       require('luasnip').filetype_extend('typescriptreact', { 'typescript' })
       require('luasnip.loaders.from_vscode').lazy_load()
@@ -147,14 +145,28 @@ return {
       'Kaiser-Yang/blink-cmp-dictionary',
       'moyiz/blink-emoji.nvim',
     },
+    event = 'InsertEnter',
     opts = function(_, opts)
+      opts.fuzzy = {
+        sorts = {
+          'exact',
+          'score',
+          'sort_text',
+        },
+      }
+
+      opts.snippets = {
+        preset = 'luasnip',
+      }
       opts.completion = {
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 200,
+        accept = {
+          auto_brackets = {
+            enabled = true,
+          },
         },
         menu = {
           draw = {
+            treesitter = { 'lsp' },
             columns = { { 'kind_icon' }, { 'label', gap = 1 }, { 'kind' } },
             components = {
               label = {
@@ -167,6 +179,13 @@ return {
               },
             },
           },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+        ghost_text = {
+          enabled = vim.g.ai_cmp,
         },
       }
 
@@ -196,36 +215,6 @@ return {
             min_keyword_length = 2,
             max_items = 12,
             score_offset = 100,
-            -- should_show_items = function()
-            --   local cursor_pos = vim.api.nvim_win_get_cursor(0)
-            --   local line = vim.api.nvim_get_current_line()
-            --   local before_cursor = line:sub(1, cursor_pos[2])
-            --   return before_cursor:find(blink_trigger_char .. '[%w_]*$') ~= nil
-            -- end,
-            -- transform_items = function(_, items)
-            --   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-            --   local line = vim.api.nvim_get_current_line()
-            --   local before_cursor = line:sub(1, col)
-            --   local pattern = vim.pesc(blink_trigger_char) .. '%w[%w-_]*$'
-            --   local s, e = before_cursor:find(pattern)
-            --
-            --   if s then
-            --     for _, item in ipairs(items) do
-            --       if not item.trigger_text_modified then
-            --         item.trigger_text_modified = true
-            --         item.textEdit = {
-            --           newText = item.insertText or item.label,
-            --           range = {
-            --             start = { line = row - 1, character = s - 1 },
-            --             ['end'] = { line = row - 1, character = col },
-            --           },
-            --         }
-            --       end
-            --     end
-            --   end
-            --
-            --   return items
-            -- end,
           },
           path = {
             name = 'Path',
