@@ -107,7 +107,6 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.coding.yanky' },
     { import = 'lazyvim.plugins.extras.coding.neogen' },
     -- nvim cmp
-    -- { import = 'lazyvim.plugins.extras.coding.nvim-cmp' },
     -- Ai
     -- { import = 'lazyvim.plugins.extras.ai.codeium' },
     { import = 'lazyvim.plugins.extras.ai.copilot' },

@@ -1,3 +1,4 @@
+-- local blink_trigger_char = ';'
 return {
   {
     'simrat39/symbols-outline.nvim',
@@ -142,11 +143,19 @@ return {
   -- Blink Cmp
   {
     'saghen/blink.cmp',
+    dependencies = {
+      'Kaiser-Yang/blink-cmp-dictionary',
+      'moyiz/blink-emoji.nvim',
+    },
     opts = function(_, opts)
       opts.completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
         menu = {
           draw = {
-            columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+            columns = { { 'kind_icon' }, { 'label', gap = 1 }, { 'kind' } },
             components = {
               label = {
                 text = function(ctx)
@@ -160,6 +169,7 @@ return {
           },
         },
       }
+
       opts.cmdline = {
         enabled = true,
         completion = {
@@ -168,11 +178,116 @@ return {
           },
         },
       }
+
+      -- Blink source
+      opts.sources = {
+        compat = {},
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'copilot', 'emoji' },
+        per_filetype = { sql = 'dadbod' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            score_offset = 100,
+          },
+          snippets = {
+            name = 'Snippets',
+            module = 'blink.cmp.sources.snippets',
+            min_keyword_length = 2,
+            max_items = 12,
+            score_offset = 100,
+            -- should_show_items = function()
+            --   local cursor_pos = vim.api.nvim_win_get_cursor(0)
+            --   local line = vim.api.nvim_get_current_line()
+            --   local before_cursor = line:sub(1, cursor_pos[2])
+            --   return before_cursor:find(blink_trigger_char .. '[%w_]*$') ~= nil
+            -- end,
+            -- transform_items = function(_, items)
+            --   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+            --   local line = vim.api.nvim_get_current_line()
+            --   local before_cursor = line:sub(1, col)
+            --   local pattern = vim.pesc(blink_trigger_char) .. '%w[%w-_]*$'
+            --   local s, e = before_cursor:find(pattern)
+            --
+            --   if s then
+            --     for _, item in ipairs(items) do
+            --       if not item.trigger_text_modified then
+            --         item.trigger_text_modified = true
+            --         item.textEdit = {
+            --           newText = item.insertText or item.label,
+            --           range = {
+            --             start = { line = row - 1, character = s - 1 },
+            --             ['end'] = { line = row - 1, character = col },
+            --           },
+            --         }
+            --       end
+            --     end
+            --   end
+            --
+            --   return items
+            -- end,
+          },
+          path = {
+            name = 'Path',
+            module = 'blink.cmp.sources.path',
+            score_offset = 100,
+            opts = {},
+          },
+          lsp = {
+            name = 'LSP',
+            module = 'blink.cmp.sources.lsp',
+            opts = {},
+            enabled = true,
+            async = false,
+            score_offset = 110,
+          },
+          dadbod = {
+            module = 'vim_dadbod_completion.blink',
+            score_offset = 90,
+          },
+          dictionary = {
+            name = 'Dict',
+            module = 'blink-cmp-dictionary',
+            min_keyword_length = 3,
+            max_items = 8,
+            score_offset = 60,
+            opts = {
+              dictionary_files = { vim.fn.expand('~/.config/nvim/dictionary/words.txt') },
+            },
+          },
+          copilot = {
+            name = 'Copilot',
+            module = 'blink-cmp-copilot',
+            score_offset = 120,
+            async = true,
+          },
+          emoji = {
+            name = 'Emoji',
+            module = 'blink-emoji',
+            score_offset = 60,
+            opts = { insert = true },
+            max_items = 12,
+          },
+        },
+      }
+
+      opts.signature = { enabled = true }
+
       opts.keymap = {
         preset = 'enter',
         ['<C-y>'] = { 'select_and_accept' },
         ['<C-l>'] = { 'snippet_forward', 'fallback' },
         ['<C-h>'] = { 'snippet_backward', 'fallback' },
+      }
+    end,
+  },
+  -- Render markdown
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    event = 'VeryLazy',
+    opts = function(_, opts)
+      opts.checkbox = {
+        enabled = true,
       }
     end,
   },
