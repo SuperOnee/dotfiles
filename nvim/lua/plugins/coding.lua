@@ -143,7 +143,6 @@ return {
     'saghen/blink.cmp',
     dependencies = {
       'Kaiser-Yang/blink-cmp-dictionary',
-      'moyiz/blink-emoji.nvim',
     },
     event = 'InsertEnter',
     opts = function(_, opts)
@@ -201,7 +200,7 @@ return {
       -- Blink source
       opts.sources = {
         compat = {},
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'copilot', 'emoji' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'copilot' },
         per_filetype = { sql = 'dadbod' },
         providers = {
           lazydev = {
@@ -249,13 +248,6 @@ return {
             module = 'blink-cmp-copilot',
             score_offset = 120,
             async = true,
-          },
-          emoji = {
-            name = 'Emoji',
-            module = 'blink-emoji',
-            score_offset = 60,
-            opts = { insert = true },
-            max_items = 12,
           },
         },
       }
