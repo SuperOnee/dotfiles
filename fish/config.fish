@@ -36,6 +36,7 @@ alias ss "source ~/.config/fish/config.fish"
 # Tmux
 alias ta "tmux attach"
 alias tmux-sessionizer "~/.config/script/tmux-sessionizer"
+alias ts tmux-sessionizer
 
 set PATH "$PATH":"$HOME/.config/script/tmux-sessionizer"
 bind \cf tmux-sessionizer

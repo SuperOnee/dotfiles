@@ -59,189 +59,76 @@ local crypto_bracket = sbar.add(
 	{ background = { color = colors.bg1 }, popup = { align = "center" } }
 )
 
-local bnb_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/bnb.png",
-			scale = 0.33,
-		},
-		color = colors.transparent,
+local crypto_symbols = {
+	{
+		symbol = "bnb",
+		name = "bnb",
+		decimals = 2,
 	},
-	icon = {
-		width = 70,
-		string = "BNB",
-		padding_left = 25,
-		align = "left",
+	{
+		symbol = "doge",
+		name = "dogecoin",
+		decimals = 4,
 	},
-	label = {
-		width = 110,
-		string = "loading...",
-		padding_left = 6,
-		align = "right",
+	{
+		symbol = "sol",
+		name = "solana",
+		decimals = 2,
 	},
-})
+	{
+		symbol = "xrp",
+		name = "xrp",
+		decimals = 3,
+	},
+	{
+		symbol = "ada",
+		name = "cardano",
+		decimals = 4,
+	},
+	{
+		symbol = "sui",
+		name = "sui",
+		decimals = 3,
+	},
+	{
+		symbol = "ton",
+		name = "toncoin",
+		decimals = 3,
+	},
+	{
+		symbol = "pol",
+		name = "polygon-ecosystem-token",
+		decimals = 4,
+	},
+}
 
-local doge_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/doge.png",
-			scale = 0.33,
-		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "DOGE",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
+local crypto_items = {}
 
-local sol_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/sol.png",
-			scale = 0.33,
+for _, symbol in ipairs(crypto_symbols) do
+	local popup = sbar.add("item", {
+		position = "popup." .. crypto_bracket.name,
+		background = {
+			image = {
+				string = "~/.config/sketchybar/icons/" .. symbol.symbol .. ".png",
+				scale = 0.33,
+			},
+			color = colors.transparent,
 		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "SOL",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
-
-local xrp_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/xrp.png",
-			scale = 0.33,
+		icon = {
+			string = symbol.symbol:upper(),
+			width = 70,
+			align = "left",
+			padding_left = 25,
 		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "XRP",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
-
-local ada_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/ada.png",
-			scale = 0.33,
+		label = {
+			string = "loading...",
+			width = 110,
+			align = "right",
+			padding_left = 6,
 		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "ADA",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
-
-local sui_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/sui.png",
-			scale = 0.33,
-		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "SUI",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
-
-local ton_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/ton.png",
-			scale = 0.33,
-		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "TON",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
-
-local pol_popup = sbar.add("item", {
-	position = "popup." .. crypto_bracket.name,
-	background = {
-		image = {
-			string = "~/.config/sketchybar/icons/pol.png",
-			scale = 0.33,
-		},
-		color = colors.transparent,
-	},
-	icon = {
-		string = "POL",
-		width = 70,
-		align = "left",
-		padding_left = 25,
-	},
-	label = {
-		string = "loading...",
-		width = 110,
-		align = "right",
-		padding_left = 6,
-	},
-})
+	})
+	table.insert(crypto_items, popup)
+end
 
 local refresh_item = function(symbol, decimals, item)
 	sbar.exec("~/.config/script/crypto/main " .. symbol .. " " .. decimals, function(res)
@@ -265,14 +152,10 @@ local refresh_item = function(symbol, decimals, item)
 end
 
 local refresh_crypto_list = function()
-	refresh_item("bnb", 3, bnb_popup)
-	refresh_item("sol", 3, sol_popup)
-	refresh_item("xrp", 3, xrp_popup)
-	refresh_item("sui", 3, sui_popup)
-	refresh_item("ada", 4, ada_popup)
-	refresh_item("ton", 3, ton_popup)
-	refresh_item("doge", 4, doge_popup)
-	refresh_item("pol", 4, pol_popup)
+	for i, popup in ipairs(crypto_items) do
+		local symbol = crypto_symbols[i]
+		refresh_item(symbol.symbol, symbol.decimals, popup)
+	end
 end
 
 local toggle_popup = function()
@@ -289,37 +172,13 @@ local open_cmc = function(crypto_symbol)
 	sbar.exec("open https://coinmarketcap.com/currencies/" .. crypto_symbol)
 end
 
-bnb_popup:subscribe("mouse.clicked", function()
-	open_cmc("bnb")
-end)
-
-doge_popup:subscribe("mouse.clicked", function()
-	open_cmc("dogecoin")
-end)
-
-sol_popup:subscribe("mouse.clicked", function()
-	open_cmc("solana")
-end)
-
-xrp_popup:subscribe("mouse.clicked", function()
-	open_cmc("xrp")
-end)
-
-ada_popup:subscribe("mouse.clicked", function()
-	open_cmc("cardano")
-end)
-
-sui_popup:subscribe("mouse.clicked", function()
-	open_cmc("sui")
-end)
-
-ton_popup:subscribe("mouse.clicked", function()
-	open_cmc("toncoin")
-end)
-
-pol_popup:subscribe("mouse.clicked", function()
-	open_cmc("polygon-ecosystem-token")
-end)
+-- Subscribe to mouse events
+for i, popup in ipairs(crypto_items) do
+	popup:subscribe("mouse.clicked", function()
+		local name = crypto_symbols[i].name
+		open_cmc(name)
+	end)
+end
 
 bitcoin:subscribe("mouse.clicked", function()
 	toggle_popup()
