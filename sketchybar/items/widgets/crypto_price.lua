@@ -2,10 +2,11 @@ local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
 
-local ethereum = sbar.add("item", "widgets.ethereum", 42, {
+local ethereum = sbar.add("graph", "widgets.ethereum", 76, {
 	position = "right",
+	graph = { color = colors.blue, fill_color = colors.transparent },
 	background = {
-		height = 30,
+		height = 18,
 		color = { alpha = 0 },
 		border_color = { alpha = 0 },
 		drawing = true,
@@ -19,18 +20,20 @@ local ethereum = sbar.add("item", "widgets.ethereum", 42, {
 			size = 10,
 		},
 		align = "right",
-		padding_right = settings.paddings,
-		y_offset = 0,
+		padding_right = 0,
+		width = 0,
+		y_offset = 6,
 	},
 	update_freq = 3,
 	updates = true,
-	padding_right = settings.paddings,
+	padding_right = settings.paddings + 6,
 })
 
-local bitcoin = sbar.add("item", "widgets.bitcoin", 42, {
+local bitcoin = sbar.add("graph", "widgets.bitcoin", 78, {
 	position = "right",
+	graph = { color = colors.blue, fill_color = colors.transparent },
 	background = {
-		height = 30,
+		height = 18,
 		color = { alpha = 0 },
 		border_color = { alpha = 0 },
 		drawing = true,
@@ -44,8 +47,9 @@ local bitcoin = sbar.add("item", "widgets.bitcoin", 42, {
 			size = 10,
 		},
 		align = "right",
-		padding_right = settings.paddings,
-		y_offset = 0,
+		padding_right = 0,
+		width = 0,
+		y_offset = 6,
 	},
 	updates = true,
 	update_freq = 3,
@@ -58,6 +62,10 @@ local crypto_bracket = sbar.add(
 	{ ethereum.name, bitcoin.name },
 	{ background = { color = colors.bg1 }, popup = { align = "center" } }
 )
+
+local last_changes = {}
+
+local diff_changes = {}
 
 local crypto_symbols = {
 	{
@@ -105,9 +113,11 @@ local crypto_symbols = {
 local crypto_items = {}
 
 for _, symbol in ipairs(crypto_symbols) do
-	local popup = sbar.add("item", {
+	local popup = sbar.add("graph", "widgets.crypto." .. symbol.symbol, 120, {
 		position = "popup." .. crypto_bracket.name,
+		graph = { color = colors.blue, fill_color = colors.transparent },
 		background = {
+			height = 18,
 			image = {
 				string = "~/.config/sketchybar/icons/" .. symbol.symbol .. ".png",
 				scale = 0.33,
@@ -122,9 +132,10 @@ for _, symbol in ipairs(crypto_symbols) do
 		},
 		label = {
 			string = "loading...",
-			width = 110,
+			width = 0,
 			align = "right",
 			padding_left = 6,
+			y_offset = 10,
 		},
 	})
 	table.insert(crypto_items, popup)
@@ -140,6 +151,20 @@ local refresh_item = function(symbol, decimals, item)
 			if price_change_percent < 0 then
 				color = colors.red
 			end
+
+			local last_change = last_changes[symbol]
+			-- default to 0.1
+			local diff_change = diff_changes[symbol] or 0.1
+			if last_change then
+				local new_diff = math.max(0, diff_change + (price_change_percent - last_change))
+				if new_diff > 0.5 then
+					new_diff = 0.5
+				end
+				diff_changes[symbol] = new_diff
+				item:push({ new_diff })
+			end
+
+			last_changes[symbol] = price_change_percent
 
 			item:set({
 				label = {
@@ -162,7 +187,6 @@ local toggle_popup = function()
 	local should_draw = crypto_bracket:query().popup.drawing == "off"
 	if should_draw then
 		crypto_bracket:set({ popup = { drawing = true } })
-		refresh_crypto_list()
 	else
 		crypto_bracket:set({ popup = { drawing = false } })
 	end
@@ -190,10 +214,10 @@ end)
 
 bitcoin:subscribe({ "routine" }, function()
 	refresh_item("btc", 0, bitcoin)
-	local popup_drawing = crypto_bracket:query().popup.drawing == "on"
-	if popup_drawing then
-		refresh_crypto_list()
-	end
+	-- local popup_drawing = crypto_bracket:query().popup.drawing == "on"
+	-- if popup_drawing then
+	refresh_crypto_list()
+	-- end
 end)
 
 ethereum:subscribe({ "routine" }, function()
