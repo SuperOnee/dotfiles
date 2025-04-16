@@ -8,6 +8,7 @@ return {
         'html-lsp',
         'css-lsp',
         'emmet-language-server',
+        'gomodifytags',
       })
     end,
   },
@@ -79,6 +80,55 @@ return {
             },
           },
         },
+        gopls = {
+          settings = {
+            gopls = {
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+              semanticTokens = true,
+            },
+          },
+        },
+      },
+      setup = {
+        gopls = function(_, _)
+          LazyVim.lsp.on_attach(function(client, bufnr)
+            if client.supports_method('textDocument/codeLens', bufnr) then
+              vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+                buffer = bufnr,
+                callback = vim.lsp.codelens.refresh,
+              })
+            end
+          end, 'gopls')
+        end,
       },
     },
   },

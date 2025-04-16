@@ -92,7 +92,7 @@ return {
     'stevearc/overseer.nvim',
     event = 'VeryLazy',
     opts = {
-      templates = { 'builtin', 'user.run_script' },
+      templates = { 'builtin', 'user.run_script', 'user.go_test' },
     },
   },
 }
