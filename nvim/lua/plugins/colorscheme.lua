@@ -77,7 +77,7 @@ return {
               PmenuSel = { bg = colors.surface1 },
               PmenuSbar = { bg = colors.surface2 },
               PmenuThumb = { bg = colors.green },
-              CursorLineNr = { fg = colors.green },
+              CursorLineNr = { fg = colors.green, style = { 'bold' } },
               Cursor = { fg = colors.red },
               FloatBorder = { bg = colors.none, fg = colors.pink }, -- colors.surface0 }, difficult to see
               GitSignsChange = { fg = colors.peach },
