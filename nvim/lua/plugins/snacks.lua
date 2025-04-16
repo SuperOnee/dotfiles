@@ -116,14 +116,16 @@ return {
         priority = 1,
         scope = {
           enabled = true,
-          char = '┊',
+          char = '┇',
           hl = 'SnacksIndentScope',
         },
-        enabled = true,
-        char = '┊',
-        only_scope = false,
-        only_current = false,
-        hl = 'SnacksIndent',
+        indent = {
+          enabled = true,
+          char = '┊',
+          only_scope = false,
+          only_current = false,
+          hl = 'SnacksIndent',
+        },
       },
     },
     keys = {

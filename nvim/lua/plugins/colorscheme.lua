@@ -61,6 +61,7 @@ return {
           mocha = function(colors)
             return {
               SnacksIndentScope = { bg = colors.none, fg = colors.red },
+              SnacksIndent = { bg = colors.none, fg = colors.surface2 },
               WinSeparator = { bg = colors.none, fg = colors.pink },
               TabLineSel = { bg = colors.red },
               BlinkCmpMenu = { bg = 'black' },
