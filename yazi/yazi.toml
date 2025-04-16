@@ -10,3 +10,6 @@ run = "git"
 
 [hidden_files]
 patterns = ["node_modules"]
+
+[manager]
+linemode = "size"
