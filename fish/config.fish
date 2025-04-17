@@ -9,6 +9,9 @@ set -Ux PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/local/sbin
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 
+# Lazygit config location
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Gretting message
 set -U fish_greeting
 
