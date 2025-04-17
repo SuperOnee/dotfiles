@@ -63,12 +63,13 @@ return {
   --   'Exafunction/codeium.nvim',
   --   cmd = 'Codeium',
   --   build = ':Codeium Auth',
+  --   event = 'InsertEnter',
   --   opts = {
-  --     enable_cmp_source = false,
+  --     enable_cmp_source = true,
   --     virtual_text = {
   --       enabled = true,
   --       key_bindings = {
-  --         accept = false, -- handled by nvim-cmp / blink.cmp
+  --         accept = '<C-i>',
   --         next = '<M-]>',
   --         prev = '<M-[>',
   --       },
@@ -186,6 +187,11 @@ return {
             score_offset = 120,
             async = true,
           },
+          -- codeium = {
+          --   kind = 'Codeium',
+          --   score_offset = 120,
+          --   async = true,
+          -- },
         },
       }
 
