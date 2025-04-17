@@ -19,3 +19,13 @@ snippet ee ifErorrNotNil[custom]
 
 snippet len0 lenGreaterThanZero[custom]
 	len(${1}) > 0
+
+snippet testF testFunction[custom]
+  func Test${1}(t *testing.T) {
+    ${2}
+  }
+
+snippet testM testMain[custom]
+  func TestMain(m *testing.M) {
+    ${2}
+  }

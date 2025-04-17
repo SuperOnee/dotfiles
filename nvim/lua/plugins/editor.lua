@@ -93,6 +93,11 @@ return {
     event = 'VeryLazy',
     opts = {
       templates = { 'builtin', 'user.run_script', 'user.go_test' },
+      task_list = {
+        max_height = 100,
+        height = 100,
+        direction = 'bottom',
+      },
     },
   },
 }
