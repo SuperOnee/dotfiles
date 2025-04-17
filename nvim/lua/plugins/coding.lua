@@ -18,64 +18,63 @@ return {
     },
   },
   -- Copilot
-  {
-    'zbirenbaum/copilot.lua',
-    event = 'VeryLazy',
-    cmd = 'Copilot',
-    build = ':Copilot auth',
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = '<C-i>',
-          -- accept_word = '<C-h>',
-          accept_line = '<C-j>',
-          next = '<M-l>',
-          prev = '<M-h>',
-          dismiss = '<C-]>',
-        },
-      },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = false,
-      },
-    },
-  },
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'main',
-    cmd = 'CopilotChat',
-    opts = function(_, opts)
-      opts.model = 'gpt-4o'
-      opts.sticky = {
-        '@models Using ' .. opts.model,
-        '#files',
-        '#buffers',
-      }
-      opts.remember_as_sticky = true
-    end,
-  },
-  -- Codeium
   -- {
-  --   'Exafunction/codeium.nvim',
-  --   cmd = 'Codeium',
-  --   build = ':Codeium Auth',
-  --   event = 'InsertEnter',
+  --   'zbirenbaum/copilot.lua',
+  --   event = 'VeryLazy',
+  --   cmd = 'Copilot',
+  --   build = ':Copilot auth',
   --   opts = {
-  --     enable_cmp_source = true,
-  --     virtual_text = {
+  --     suggestion = {
   --       enabled = true,
-  --       key_bindings = {
+  --       auto_trigger = true,
+  --       debounce = 75,
+  --       keymap = {
   --         accept = '<C-i>',
-  --         next = '<M-]>',
-  --         prev = '<M-[>',
+  --         -- accept_word = '<C-h>',
+  --         accept_line = '<C-j>',
+  --         next = '<M-l>',
+  --         prev = '<M-h>',
+  --         dismiss = '<C-]>',
   --       },
+  --     },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = false,
   --     },
   --   },
   -- },
+  -- {
+  --   'CopilotC-Nvim/CopilotChat.nvim',
+  --   branch = 'main',
+  --   cmd = 'CopilotChat',
+  --   opts = function(_, opts)
+  --     opts.model = 'gpt-4o'
+  --     opts.sticky = {
+  --       '@models Using ' .. opts.model,
+  --       '#files',
+  --       '#buffers',
+  --     }
+  --     opts.remember_as_sticky = true
+  --   end,
+  -- },
+  -- Codeium
+  {
+    'Exafunction/codeium.nvim',
+    cmd = 'Codeium',
+    build = ':Codeium Auth',
+    opts = {
+      enable_cmp_source = vim.g.ai_cmp,
+      virtual_text = {
+        enabled = true,
+        key_bindings = {
+          accept = '<C-i>',
+          next = '<M-]>',
+          prev = '<M-[>',
+        },
+      },
+    },
+  },
   -- Friendly Snippets
   {
     'rafamadriz/friendly-snippets',
@@ -91,6 +90,8 @@ return {
     'saghen/blink.cmp',
     dependencies = {
       'Kaiser-Yang/blink-cmp-dictionary',
+      'codeium.nvim',
+      'saghen/blink.compat',
     },
     event = 'InsertEnter',
     opts = function(_, opts)
@@ -137,8 +138,8 @@ return {
 
       -- Blink source
       opts.sources = {
-        compat = {},
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'copilot' },
+        compat = { 'codeium' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'codeium' },
         per_filetype = { sql = 'dadbod' },
         providers = {
           lazydev = {
@@ -181,17 +182,17 @@ return {
               dictionary_files = { vim.fn.expand('~/.config/nvim/dictionary/words.txt') },
             },
           },
-          copilot = {
-            name = 'Copilot',
-            module = 'blink-cmp-copilot',
-            score_offset = 120,
-            async = true,
-          },
-          -- codeium = {
-          --   kind = 'Codeium',
+          -- copilot = {
+          --   name = 'Copilot',
+          --   module = 'blink-cmp-copilot',
           --   score_offset = 120,
           --   async = true,
           -- },
+          codeium = {
+            kind = 'Codeium',
+            score_offset = 120,
+            async = true,
+          },
         },
       }
 

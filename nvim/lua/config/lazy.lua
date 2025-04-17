@@ -44,7 +44,7 @@ require('lazy').setup({
             Array = ' ',
             Boolean = '󱍊 ',
             Class = ' ',
-            Codeium = '󰘦 ',
+            Codeium = '󰏚 ',
             Color = ' ',
             Control = ' ',
             Collapsed = ' ',
@@ -108,9 +108,9 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.coding.neogen' },
     -- nvim cmp
     -- Ai
-    -- { import = 'lazyvim.plugins.extras.ai.codeium' },
-    { import = 'lazyvim.plugins.extras.ai.copilot' },
-    { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
+    { import = 'lazyvim.plugins.extras.ai.codeium' },
+    -- { import = 'lazyvim.plugins.extras.ai.copilot' },
+    -- { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
     -- Editor
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
     { import = 'lazyvim.plugins.extras.editor.overseer' },
