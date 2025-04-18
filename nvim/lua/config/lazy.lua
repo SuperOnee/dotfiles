@@ -74,7 +74,7 @@ require('lazy').setup({
             Snippet = ' ',
             String = ' ',
             Struct = '󰆼 ',
-            Supermaven = ' ',
+            Supermaven = '󰚩 ',
             TabNine = '󰏚 ',
             Text = ' ',
             TypeParameter = ' ',
@@ -106,11 +106,6 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.coding.luasnip' },
     { import = 'lazyvim.plugins.extras.coding.yanky' },
     { import = 'lazyvim.plugins.extras.coding.neogen' },
-    -- nvim cmp
-    -- Ai
-    { import = 'lazyvim.plugins.extras.ai.codeium' },
-    -- { import = 'lazyvim.plugins.extras.ai.copilot' },
-    -- { import = 'lazyvim.plugins.extras.ai.copilot-chat' },
     -- Editor
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
     { import = 'lazyvim.plugins.extras.editor.overseer' },

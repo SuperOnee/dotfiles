@@ -117,11 +117,30 @@ return {
     --   },
     -- },
   },
+  -- Lualine
   {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, { 'overseer' })
+      -- Add supermaven status component
+      local api = require('supermaven-nvim.api')
+      local function supermaven_icon()
+        return LazyVim.config.icons.kinds.Supermaven
+      end
+      local colors = require('catppuccin.palettes').get_palette('mocha')
+      table.insert(opts.sections.lualine_x, 2, {
+        supermaven_icon,
+        color = function()
+          local is_running = api.is_running()
+          if is_running then
+            return { fg = colors.green }
+          else
+            return { fg = colors.red }
+          end
+        end,
+      })
+      -- Overseer status component
+      table.insert(opts.sections.lualine_x, 3, { 'overseer' })
     end,
   },
 }

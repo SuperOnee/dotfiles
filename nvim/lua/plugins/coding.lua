@@ -58,21 +58,26 @@ return {
   --     opts.remember_as_sticky = true
   --   end,
   -- },
-  -- Codeium
   {
-    'Exafunction/codeium.nvim',
-    cmd = 'Codeium',
-    build = ':Codeium Auth',
+    'supermaven-inc/supermaven-nvim',
+    event = 'InsertEnter',
     opts = {
-      enable_cmp_source = vim.g.ai_cmp,
-      virtual_text = {
-        enabled = true,
-        key_bindings = {
-          accept = '<C-i>',
-          next = '<M-]>',
-          prev = '<M-[>',
-        },
+      keymaps = {
+        accept_suggestion = '<C-i>',
+        clear_suggestion = '<C-d>',
+        accept_word = '<C-j>',
       },
+      ignore_filetypes = { 'bigfile', 'snacks_input', 'snacks_notif' },
+      color = {
+        suggestion_color = '#ffffff',
+        cterm = 244,
+      },
+      log_level = 'info',
+      disable_inline_completion = false,
+      disable_keymaps = false, -- disables built in keymaps for more manual control
+      condition = function()
+        return false
+      end, -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
     },
   },
   -- Friendly Snippets
@@ -90,8 +95,6 @@ return {
     'saghen/blink.cmp',
     dependencies = {
       'Kaiser-Yang/blink-cmp-dictionary',
-      'codeium.nvim',
-      'saghen/blink.compat',
     },
     event = 'InsertEnter',
     opts = function(_, opts)
@@ -138,8 +141,8 @@ return {
 
       -- Blink source
       opts.sources = {
-        compat = { 'codeium' },
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary', 'codeium' },
+        compat = {},
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary' },
         per_filetype = { sql = 'dadbod' },
         providers = {
           lazydev = {
@@ -188,11 +191,6 @@ return {
           --   score_offset = 120,
           --   async = true,
           -- },
-          codeium = {
-            kind = 'Codeium',
-            score_offset = 120,
-            async = true,
-          },
         },
       }
 
