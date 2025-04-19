@@ -28,11 +28,14 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
     },
     opts = function()
       -- Register custom keymaps for CodeCompanion
 
-      vim.keymap.set('n', '<leader>aa', '<cmd>CodeCompanionChat<CR>', { desc = 'Open code companion chat[Custom]' })
+      vim.keymap.set('n', '<leader>aa', function()
+        require('codecompanion').toggle()
+      end, { desc = 'Open code companion chat[Custom]' })
 
       vim.keymap.set(
         { 'n', 'v' },
@@ -41,19 +44,55 @@ return {
         { desc = 'Open code companion actions[Custom]' }
       )
 
+      local api_key = vim.fn.system('echo $GEMINI_API_KEY')
+      api_key = api_key:gsub('%s*$', '')
+
       return {
         language = 'english',
+        prompt_library = {
+          ['Optimize code'] = {
+            strategy = 'chat',
+            description = 'Code Optimization',
+            prompts = {
+              {
+                role = 'system',
+                content = 'You are an expert code optimizer and refactorer. Analyze the code provided by the user, identify areas for improvement in terms of efficiency, readability, and maintainability, and provide a refactored version of the code with clear explanations of the changes made.',
+              },
+              {
+                role = 'user',
+                content = 'Analyze and refactor the provided code to improve its efficiency, readability, and maintainability. Provide the optimized code and explain the changes.',
+              },
+            },
+          },
+          ['Generate comments'] = {
+            strategy = 'chat',
+            description = 'Code Comments',
+            prompts = {
+              {
+                role = 'system',
+                content = 'You are an expert code commenter. Analyze the provided code, identify areas for improvement in terms of readability and maintainability, and provide clear and concise comments to improve the code.',
+              },
+              {
+                role = 'user',
+                content = 'Analyze and generate comments for the provided code to improve its readability and maintainability. Provide the comments and explain the changes.',
+              },
+            },
+          },
+        },
         strategies = {
           chat = {
             adapter = 'gemini',
             keymaps = {
               send = {
-                modes = { n = '<Enter>', i = '<C-s>' },
+                modes = { n = '<Enter>' },
               },
               close = {
                 modes = { n = 'Q', i = '<C-c>' },
               },
             },
+          },
+          inline = {
+            adapter = 'gemini',
           },
         },
         adapters = {
@@ -65,18 +104,18 @@ return {
                 },
               },
               env = {
-                api_key = 'cmd:gpg --decrypt ~/keys/gemini-api-key.gpg 2>/dev/null',
+                api_key = api_key,
               },
             })
           end,
         },
         display = {
+          chat = {
+            show_settings = true,
+          },
           diff = {
-            enabled = true,
-            close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
             layout = 'vertical', -- vertical|horizontal split for default provider
-            opts = { 'internal', 'filler', 'closeoff', 'algorithm:patience', 'followwrap', 'linematch:120' },
-            provider = 'default', -- default|mini_diff
+            provider = 'mini_diff', -- default|mini_diff
           },
         },
       }

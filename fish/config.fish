@@ -72,3 +72,5 @@ fzf_configure_bindings --directory=\ct
 
 starship init fish | source
 zoxide init fish | source
+
+source ~/.config/fish/.env
