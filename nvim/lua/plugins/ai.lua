@@ -36,7 +36,7 @@ return {
 
       vim.keymap.set(
         { 'n', 'v' },
-        '<leader>ac',
+        '<leader>ao',
         '<cmd>CodeCompanionActions<CR>',
         { desc = 'Open code companion actions[Custom]' }
       )

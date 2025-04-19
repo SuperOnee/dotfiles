@@ -74,7 +74,7 @@ require('lazy').setup({
             Snippet = ' ',
             String = ' ',
             Struct = '󰆼 ',
-            Supermaven = '󰚩 ',
+            Supermaven = '󰚌 ',
             TabNine = '󰏚 ',
             Text = ' ',
             TypeParameter = ' ',
