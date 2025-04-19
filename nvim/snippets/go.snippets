@@ -29,3 +29,8 @@ snippet testM testMain[custom]
   func TestMain(m *testing.M) {
     ${2}
   }
+
+snippet fiberFunc fiberHanlderFunc[custom]
+  func ${1}(c fiber.Ctx) error {
+    ${2}
+  }
