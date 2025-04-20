@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = markdown_group,
   pattern = { 'markdown' },
   callback = function()
-    require('custom.markdownUtil')
+    require('custom.markdown_util')
   end,
 })
 
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('FileType', {
       0,
       'n',
       '<C-;>',
-      ":lua require('custom.markdownUtil').toggleCheckbox()<CR>",
+      ":lua require('custom.markdown_util').toggleCheckbox()<CR>",
       { noremap = true, silent = true, desc = 'Toggle checkbox' }
     )
   end,
@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd('FileType', {
       0,
       'n',
       '<C-,>',
-      ":lua require('custom.markdownUtil').toggleTodo()<CR>",
+      ":lua require('custom.markdown_util').toggleTodo()<CR>",
       { noremap = true, silent = true, desc = 'Toggle todo' }
     )
   end,
@@ -56,5 +56,20 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.api.nvim_buf_create_user_command(0, 'GoModifyTags', function()
       require('custom.go_modify_tags').run()
     end, { desc = 'Modify Go struct tags' })
+  end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = {
+    'CodeCompanionRequestStarted',
+    'CodeCompanionRequestFinished',
+  },
+  callback = function(args)
+    local M = require('custom.code_companion_loading')
+    if args.match == 'CodeCompanionRequestStarted' then
+      M.start_spinner()
+    elseif args.match == 'CodeCompanionRequestFinished' then
+      M.stop_spinner()
+    end
   end,
 })

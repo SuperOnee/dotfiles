@@ -110,7 +110,11 @@ return {
             return require('codecompanion.adapters').extend('gemini', {
               schema = {
                 model = {
-                  default = 'gemini-2.0-flash',
+                  default = 'gemini-2.5-flash-preview-04-17',
+                  choices = {
+                    ['gemini-2.5-flash-preview-04-17'] = { opts = { can_reason = true } },
+                    'gemini-2.0-flash',
+                  },
                 },
               },
               env = {
