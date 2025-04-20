@@ -48,7 +48,7 @@ return {
       api_key = api_key:gsub('%s*$', '')
 
       return {
-        language = 'english',
+        language = 'English',
         prompt_library = {
           ['Optimize code'] = {
             strategy = 'chat',
