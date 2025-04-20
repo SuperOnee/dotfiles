@@ -67,8 +67,10 @@ vim.api.nvim_create_autocmd('User', {
   callback = function(args)
     local M = require('custom.code_companion_loading')
     if args.match == 'CodeCompanionRequestStarted' then
+      Snacks.notify.info('CodeCompanion start processing...')
       M.start_spinner()
     elseif args.match == 'CodeCompanionRequestFinished' then
+      Snacks.notify.info('CodeCompanion finished!')
       M.stop_spinner()
     end
   end,
