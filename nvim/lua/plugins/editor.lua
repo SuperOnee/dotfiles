@@ -108,7 +108,7 @@ return {
     opts = function()
       -- Register keymaps
       local tree_sj = require('treesj')
-      vim.keymap.set('n', 'gt', tree_sj.toggle)
+      vim.keymap.set('n', 'J', tree_sj.toggle)
       vim.keymap.set('n', 'gS', tree_sj.split)
       vim.keymap.set('n', 'gJ', tree_sj.join)
       return {
