@@ -75,12 +75,16 @@ return {
           },
         },
       }
-
       -- Blink source
       opts.sources = {
         compat = {},
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'dictionary' },
-        per_filetype = { sql = 'dadbod' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+          sql = 'dadbod',
+          lua = { inherit_defaults = true, 'lazydev' },
+          markdown = { inherit_defaults = true, 'dictionary' },
+          codecompanion = { inherit_defaults = true, 'codecompanion' },
+        },
         providers = {
           lazydev = {
             name = 'LazyDev',
@@ -91,13 +95,13 @@ return {
             name = 'Snippets',
             module = 'blink.cmp.sources.snippets',
             min_keyword_length = 2,
-            max_items = 12,
+            max_items = 3,
             score_offset = 100,
           },
           path = {
             name = 'Path',
             module = 'blink.cmp.sources.path',
-            score_offset = 100,
+            score_offset = 150,
             opts = {},
           },
           lsp = {
@@ -106,28 +110,32 @@ return {
             opts = {},
             enabled = true,
             async = false,
-            score_offset = 110,
+            score_offset = 130,
           },
           dadbod = {
             module = 'vim_dadbod_completion.blink',
             score_offset = 90,
           },
+          codecompanion = {
+            name = 'CodeCompanion',
+            score_offset = 90,
+            module = 'codecompanion.providers.completion.blink',
+            enabled = true,
+          },
+          buffer = {
+            max_items = 3,
+            score_offset = 80,
+          },
           dictionary = {
             name = 'Dict',
             module = 'blink-cmp-dictionary',
             min_keyword_length = 3,
-            max_items = 8,
+            max_items = 6,
             score_offset = 60,
             opts = {
               dictionary_files = { vim.fn.expand('~/.config/nvim/dictionary/words.txt') },
             },
           },
-          -- copilot = {
-          --   name = 'Copilot',
-          --   module = 'blink-cmp-copilot',
-          --   score_offset = 120,
-          --   async = true,
-          -- },
         },
       }
 

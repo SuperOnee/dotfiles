@@ -13,7 +13,7 @@ return {
         suggestion_color = '#ffffff',
         cterm = 244,
       },
-      log_level = 'info',
+      log_level = 'error',
       disable_inline_completion = false,
       disable_keymaps = false, -- disables built in keymaps for more manual control
       condition = function()
@@ -44,10 +44,10 @@ return {
         { desc = 'Open code companion actions[Custom]' }
       )
 
-      local api_key = vim.fn.system('echo $GEMINI_API_KEY')
-      api_key = api_key:gsub('%s*$', '')
+      local api_key = os.getenv('GEMINI_API_KEY')
 
       return {
+        log_level = 'DEBUG',
         language = 'English',
         prompt_library = {
           ['Optimize code'] = {
@@ -104,19 +104,14 @@ return {
               },
             },
           },
+          cmd = {
+            adapter = 'gemini',
+          },
         },
         adapters = {
           gemini = function()
             return require('codecompanion.adapters').extend('gemini', {
-              schema = {
-                model = {
-                  default = 'gemini-2.5-flash-preview-04-17',
-                  choices = {
-                    ['gemini-2.5-flash-preview-04-17'] = { opts = { can_reason = true } },
-                    'gemini-2.0-flash',
-                  },
-                },
-              },
+              name = 'gemini',
               env = {
                 api_key = api_key,
               },
@@ -125,7 +120,7 @@ return {
         },
         display = {
           chat = {
-            show_settings = true,
+            show_settings = false,
           },
           diff = {
             layout = 'vertical', -- vertical|horizontal split for default provider
