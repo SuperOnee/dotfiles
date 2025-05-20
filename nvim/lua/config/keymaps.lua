@@ -26,6 +26,9 @@ keymap.set('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>', { remap = true, silent = t
 keymap.set('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>', { remap = true, silent = true })
 keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>', { remap = true, silent = true })
 
+-- Code action
+keymap.set('i', '<C-a>', vim.lsp.buf.code_action, { silent = true })
+
 keymap.set('n', 'G', 'Gzz', { remap = true })
 
 -- Increment/decrement
@@ -42,4 +45,8 @@ keymap.set('n', 'j', [[v:count?'j':'gj']], { noremap = true, expr = true })
 keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
 
 -- Select all text in current file
-keymap.set('n', '<C-a>', 'gg<S-v>G')
+keymap.set('n', '<C-a>', function()
+  Snacks.scroll.disable()
+  vim.cmd('norm! ggVG')
+  Snacks.scroll.enable()
+end)
