@@ -225,6 +225,10 @@ f = [
   'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
 
 [mode.apps.binding]
 alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
