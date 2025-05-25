@@ -2,11 +2,10 @@ local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
 
-local ethereum = sbar.add("graph", "widgets.ethereum", 76, {
+local ethereum = sbar.add("item", "widgets.ethereum", 42, {
 	position = "right",
-	graph = { color = colors.blue, fill_color = colors.transparent },
 	background = {
-		height = 18,
+		height = 30,
 		color = { alpha = 0 },
 		border_color = { alpha = 0 },
 		drawing = true,
@@ -20,20 +19,17 @@ local ethereum = sbar.add("graph", "widgets.ethereum", 76, {
 			size = 10,
 		},
 		align = "right",
-		padding_right = 0,
-		width = 0,
-		y_offset = 6,
+		padding_right = settings.paddings,
 	},
 	update_freq = 3,
 	updates = true,
 	padding_right = settings.paddings + 6,
 })
 
-local bitcoin = sbar.add("graph", "widgets.bitcoin", 78, {
+local bitcoin = sbar.add("item", "widgets.bitcoin", 42, {
 	position = "right",
-	graph = { color = colors.blue, fill_color = colors.transparent },
 	background = {
-		height = 18,
+		height = 30,
 		color = { alpha = 0 },
 		border_color = { alpha = 0 },
 		drawing = true,
@@ -47,9 +43,7 @@ local bitcoin = sbar.add("graph", "widgets.bitcoin", 78, {
 			size = 10,
 		},
 		align = "right",
-		padding_right = 0,
-		width = 0,
-		y_offset = 6,
+		padding_right = settings.paddings,
 	},
 	updates = true,
 	update_freq = 3,
@@ -113,11 +107,10 @@ local crypto_symbols = {
 local crypto_items = {}
 
 for _, symbol in ipairs(crypto_symbols) do
-	local popup = sbar.add("graph", "widgets.crypto." .. symbol.symbol, 120, {
+	local popup = sbar.add("item", "widgets.crypto." .. symbol.symbol, 42, {
 		position = "popup." .. crypto_bracket.name,
-		graph = { color = colors.blue, fill_color = colors.transparent },
 		background = {
-			height = 18,
+			height = 30,
 			image = {
 				string = "~/.config/sketchybar/icons/" .. symbol.symbol .. ".png",
 				scale = 0.33,
@@ -132,10 +125,8 @@ for _, symbol in ipairs(crypto_symbols) do
 		},
 		label = {
 			string = "loading...",
-			width = 0,
 			align = "right",
 			padding_left = 6,
-			y_offset = 10,
 		},
 	})
 	table.insert(crypto_items, popup)
