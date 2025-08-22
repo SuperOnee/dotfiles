@@ -61,6 +61,12 @@ return {
   {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
+    init = function()
+      local bufline = require('catppuccin.groups.integrations.bufferline')
+      function bufline.get()
+        return bufline.get_theme()
+      end
+    end,
     opts = function(_, opt)
       local mocha = require('catppuccin.palettes').get_palette('mocha')
       opt.highlights = require('catppuccin.groups.integrations.bufferline').get({

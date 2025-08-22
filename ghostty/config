@@ -27,7 +27,7 @@ keybind = cmd+s>z=toggle_fullscreen
 # Shaders
 # cursor trail shader: 
 # https://github.com/ghostty-org/ghostty/pull/6912
-# custom-shader = ./shaders/cursor_blaze.glsl
+custom-shader = ./shaders/cursor_blaze.glsl
 # custom-shader = ./shaders/bloom.glsl
 # custom-shader = ./shaders/bloom025.glsl
 # custom-shader = ./shaders/bloom050.glsl

@@ -8,6 +8,10 @@ return {
       require('catppuccin').setup({
         flavour = 'mocha',
         transparent_background = true,
+        float = {
+          transparent = true,
+          solid = true,
+        },
         styles = {
           comments = { 'italic' },
           functions = { 'bold' },
