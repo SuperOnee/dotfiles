@@ -53,6 +53,11 @@ float determineStartVertexFactor(vec2 c, vec2 p) {
     return 1.0 - max(condition1, condition2);
 }
 
+float isLess(float c, float p) {
+    // Conditions using step
+    return 1.0 - step(p, c); // c < p
+}
+
 vec2 getRectangleCenter(vec4 rectangle) {
     return vec2(rectangle.x + (rectangle.z / 2.), rectangle.y - (rectangle.w / 2.));
 }
@@ -60,10 +65,6 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-vec4 saturate(vec4 color, float factor) {
-    float gray = dot(color, vec4(0.299, 0.587, 0.114, 0.)); // luminance
-    return mix(vec4(gray), color, factor);
-}
 const vec4 TRAIL_COLOR = vec4(1.0, 0.725, 0.161, 1.0);
 const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
 const float DURATION = 0.3; //IN SECONDS
@@ -89,11 +90,14 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float vertexFactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
     float invertedVertexFactor = 1.0 - vertexFactor;
 
+    float xFactor = isLess(previousCursor.x, currentCursor.x);
+    float yFactor = isLess(currentCursor.y, previousCursor.y);
+
     // Set every vertex of my parellogram
     vec2 v0 = vec2(currentCursor.x + currentCursor.z * vertexFactor, currentCursor.y - currentCursor.w);
-    vec2 v1 = vec2(currentCursor.x + currentCursor.z * invertedVertexFactor, currentCursor.y);
-    vec2 v2 = vec2(previousCursor.x + currentCursor.z * invertedVertexFactor, previousCursor.y);
-    vec2 v3 = vec2(previousCursor.x + currentCursor.z * vertexFactor, previousCursor.y - previousCursor.w);
+    vec2 v1 = vec2(currentCursor.x + currentCursor.z * xFactor, currentCursor.y - currentCursor.w * yFactor);
+    vec2 v2 = vec2(currentCursor.x + currentCursor.z * invertedVertexFactor, currentCursor.y);
+    vec2 v3 = centerCP;
 
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
@@ -105,12 +109,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 
     float mod = .007;
     //trailblaze
-    // HACK: Using the saturate function because I currently don't know how to blend colors without losing saturation.
-    vec4 trail = mix(saturate(TRAIL_COLOR_ACCENT, 1.5), fragColor, 1. - smoothstep(0., sdfTrail + mod, 0.007));
-    trail = mix(saturate(TRAIL_COLOR, 1.5), trail, 1. - smoothstep(0., sdfTrail + mod, 0.006));
-    trail = mix(trail, saturate(TRAIL_COLOR, 1.5), step(sdfTrail + mod, 0.));
+    vec4 trail = mix(TRAIL_COLOR_ACCENT, fragColor, 1. - smoothstep(0., sdfTrail + mod, 0.007));
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfTrail + mod, 0.006));
+    trail = mix(trail, TRAIL_COLOR, step(sdfTrail + mod, 0.));
     //cursorblaze
-    trail = mix(saturate(TRAIL_COLOR_ACCENT, 1.5), trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
-    trail = mix(saturate(TRAIL_COLOR, 1.5), trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
+    trail = mix(TRAIL_COLOR_ACCENT, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
     fragColor = mix(trail, fragColor, 1. - smoothstep(0., sdfCurrentCursor, easedProgress * lineLength));
 }
