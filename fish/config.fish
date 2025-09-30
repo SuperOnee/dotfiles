@@ -54,6 +54,9 @@ export FZF_DEFAULT_OPTS=" \
 
 set fzf_fd_opts --hidden --max-depth 5
 
+#golang
+set -x PATH $PATH (go env GOPATH)/bin
+
 # Yazi
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")

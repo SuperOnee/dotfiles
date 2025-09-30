@@ -1,6 +1,6 @@
 return {
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         'stylua',
@@ -108,6 +108,8 @@ return {
                 unusedparams = true,
                 unusedwrite = true,
                 useany = true,
+                ST1000 = false,
+                ST1003 = false,
               },
               usePlaceholders = true,
               completeUnimported = true,
