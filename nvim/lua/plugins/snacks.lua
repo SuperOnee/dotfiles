@@ -147,6 +147,17 @@ return {
     },
     keys = {
       {
+        '<leader>e',
+        function()
+          Snacks.explorer({
+            layout = {
+              preset = 'default',
+              preview = true,
+            },
+          })
+        end,
+      },
+      {
         '<leader><leader>',
         function()
           Snacks.picker.files({

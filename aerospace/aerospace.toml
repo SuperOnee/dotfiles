@@ -209,7 +209,6 @@ alt-shift-enter = 'mode apps'
 
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-c = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
-alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
 alt-r = 'exec-and-forget open -a /Applications/Shadowrocket.app'
 alt-p = 'exec-and-forget open -a /Applications/ChatGPT.app'
