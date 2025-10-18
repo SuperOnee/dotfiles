@@ -92,6 +92,7 @@ return {
       opt.options.separator_style = 'none'
       opt.options.show_buffer_close_icons = false
       opt.options.always_show_bufferline = true
+      opt.options.truncate_names = false
     end,
     -- opts = {
     --   highlights = require('catppuccin.groups.integrations.bufferline').get({
