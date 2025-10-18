@@ -62,6 +62,7 @@ return {
                 content = 'Analyze and refactor the provided code to improve its efficiency, readability, and maintainability. Provide the optimized code and explain the changes.',
               },
             },
+            opts = {},
           },
           ['Generate comments'] = {
             strategy = 'chat',
@@ -76,6 +77,7 @@ return {
                 content = 'Analyze and generate comments for the provided code to improve its readability and maintainability. Provide the comments and explain the changes.',
               },
             },
+            opts = {},
           },
         },
         strategies = {
