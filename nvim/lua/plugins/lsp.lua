@@ -19,6 +19,9 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      codelens = {
+        enabled = true,
+      },
       servers = {
         emmet_language_server = {
           filetypes = {
