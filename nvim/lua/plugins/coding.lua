@@ -80,7 +80,7 @@ return {
         compat = {},
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         per_filetype = {
-          sql = 'dadbod',
+          sql = { 'dadbod' },
           lua = { inherit_defaults = true, 'lazydev' },
           markdown = { inherit_defaults = true, 'dictionary' },
           codecompanion = { inherit_defaults = true, 'codecompanion' },

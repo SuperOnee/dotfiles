@@ -93,6 +93,7 @@ return {
                 tidy = true,
                 upgrade_dependency = true,
                 vendor = true,
+                references = true,
               },
               hints = {
                 assignVariableTypes = true,
@@ -122,14 +123,14 @@ return {
       },
       setup = {
         gopls = function(_, _)
-          LazyVim.lsp.on_attach(function(client, bufnr)
+          Snacks.util.lsp.on({ name = 'gopls' }, function(bufnr, client)
             if client.supports_method('textDocument/codeLens', bufnr) then
               vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
                 buffer = bufnr,
                 callback = vim.lsp.codelens.refresh,
               })
             end
-          end, 'gopls')
+          end)
         end,
       },
     },
