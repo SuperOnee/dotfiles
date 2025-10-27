@@ -55,23 +55,6 @@ return {
             },
           },
         },
-        explorer = {
-          finder = 'explorer',
-          sort = { fields = { 'sort' } },
-          supports_live = true,
-          tree = true,
-          watch = true,
-          diagnostics = true,
-          diagnostics_open = false,
-          git_status = true,
-          git_status_open = false,
-          git_untracked = true,
-          follow_file = true,
-          focus = 'list',
-          auto_close = false,
-          jump = { close = false },
-          layout = { preset = 'sidebar', preview = false },
-        },
       },
       animate = {
         fps = 120,
@@ -164,13 +147,6 @@ return {
       },
     },
     keys = {
-      {
-        '<leader>e',
-        function()
-          Snacks.explorer()
-        end,
-        desc = 'File Explorer[Custom]',
-      },
       {
         '<leader><leader>',
         function()
