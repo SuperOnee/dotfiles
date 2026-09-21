@@ -96,10 +96,9 @@ margin = 1
 alwaysCenterSingleColumn = false
 centerFocusedColumn = "never"
 containerPrimarySpanPresets = [0.3333333333333333, 0.5, 0.6666666666666666]
-defaultContainerPrimarySpan = 1.0
-infiniteLoop = false
+infiniteLoop = true
 singleWindowFit = "container_primary_span"
-visibleContainerCount = 2
+visibleContainerCount = 1
 
 [overview]
 invertScrollDirection = false
@@ -159,7 +158,7 @@ showWorkspaceName = true
 useWorkspaceId = true
 
 [workspaceBar]
-backgroundOpacity = 0.1
+backgroundOpacity = 0.05
 deduplicateAppIcons = false
 enabled = true
 excludedBundleIDs = []
@@ -173,7 +172,7 @@ reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
 showAccentHighlights = true
-showFloatingWindows = false
+showFloatingWindows = true
 showItemBackgrounds = true
 showLabels = true
 solidBlackBackground = false
