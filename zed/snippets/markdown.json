@@ -1,0 +1,23 @@
+{
+  "markdown checkbox[custom]": {
+    "prefix": "cb",
+    "body": [
+      "- [ ] ${1}"
+    ],
+    "description": "markdown checkbox[custom]"
+  },
+  "markdown todo[custom]": {
+    "prefix": "todo",
+    "body": [
+      "- [-] ${1}"
+    ],
+    "description": "markdown todo[custom]"
+  },
+  "markdown checkedCheckbox[custom]": {
+    "prefix": "cbChecked",
+    "body": [
+      "- [x] ${1}"
+    ],
+    "description": "markdown checkedCheckbox[custom]"
+  }
+}

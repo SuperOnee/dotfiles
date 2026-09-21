@@ -1,0 +1,56 @@
+{
+  "console.log[custom]": {
+    "prefix": "cl",
+    "body": [
+      "console.log(${1})"
+    ],
+    "description": "console.log[custom]"
+  },
+  "constFunction[custom]": {
+    "prefix": "cf",
+    "body": [
+      "const ${1} = (${2})${3} => {",
+      "  ${4}",
+      "}"
+    ],
+    "description": "constFunction[custom]"
+  },
+  "exportFunction[custom]": {
+    "prefix": "epf",
+    "body": [
+      "export const ${1} = (${2})${3} => {",
+      "\t${4}",
+      "}"
+    ],
+    "description": "exportFunction[custom]"
+  },
+  "exportVariable[custom]": {
+    "prefix": "epv",
+    "body": [
+      "export const ${1} = ${2}"
+    ],
+    "description": "exportVariable[custom]"
+  },
+  "exportInterface[custom]": {
+    "prefix": "epi",
+    "body": [
+      "export interface ${1} {",
+      "\t${2}",
+      "}"
+    ],
+    "description": "exportInterface[custom]"
+  },
+  "exportReactComponent[custom]": {
+    "prefix": "com",
+    "body": [
+      "const ${1} = (${2}) => {",
+      "  return (",
+      "    ${3}",
+      "  )",
+      "}",
+      "",
+      "export default ${1}"
+    ],
+    "description": "exportReactComponent[custom]"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "mainFunction[custom]": {
+    "prefix": "main",
+    "body": [
+      "func main() {",
+      "\t${1}",
+      "}"
+    ],
+    "description": "mainFunction[custom]"
+  },
+  "fmt.Printf[custom]": {
+    "prefix": "pf",
+    "body": [
+      "fmt.Printf(\"${1}\\\\n\")"
+    ],
+    "description": "fmt.Printf[custom]"
+  },
+  "fmt.Sprintf[custom]": {
+    "prefix": "sf",
+    "body": [
+      "fmt.Sprintf(${1})"
+    ],
+    "description": "fmt.Sprintf[custom]"
+  },
+  "fmt.Println[custom]": {
+    "prefix": "pl",
+    "body": [
+      "fmt.Println(${1})"
+    ],
+    "description": "fmt.Println[custom]"
+  },
+  "ifErorrNotNil[custom]": {
+    "prefix": "ee",
+    "body": [
+      "if err != nil {",
+      "\treturn err\t",
+      "}"
+    ],
+    "description": "ifErorrNotNil[custom]"
+  },
+  "lenGreaterThanZero[custom]": {
+    "prefix": "len0",
+    "body": [
+      "len(${1}) > 0"
+    ],
+    "description": "lenGreaterThanZero[custom]"
+  },
+  "testFunction[custom]": {
+    "prefix": "testF",
+    "body": [
+      "func Test${1}(t *testing.T) {",
+      "  ${2}",
+      "}"
+    ],
+    "description": "testFunction[custom]"
+  },
+  "testMain[custom]": {
+    "prefix": "testM",
+    "body": [
+      "func TestMain(m *testing.M) {",
+      "  ${2}",
+      "}"
+    ],
+    "description": "testMain[custom]"
+  },
+  "fiberHanlderFunc[custom]": {
+    "prefix": "fiberFunc",
+    "body": [
+      "func ${1}(c fiber.Ctx) error {",
+      "  ${2}",
+      "}"
+    ],
+    "description": "fiberHanlderFunc[custom]"
+  }
+}

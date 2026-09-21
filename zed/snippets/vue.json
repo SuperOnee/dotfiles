@@ -1,0 +1,47 @@
+{
+  "vue3-setup-ts[custom]": {
+    "prefix": "setup",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "\t${1}",
+      "</script>",
+      "",
+      "<template>",
+      "\t<div>${2}</div>",
+      "</template>"
+    ],
+    "description": "vue3-setup-ts[custom]"
+  },
+  "vue3DefineProps[custom]": {
+    "prefix": "dp",
+    "body": [
+      "const ${2} = defineProps<{",
+      "\t${1}",
+      "}>()"
+    ],
+    "description": "vue3DefineProps[custom]"
+  },
+  "onClick": {
+    "prefix": "click",
+    "body": [
+      "@click=\"${1}\""
+    ],
+    "description": "onClick"
+  },
+  "onChange": {
+    "prefix": "change",
+    "body": [
+      "@change=\"${1}\""
+    ],
+    "description": "onChange"
+  },
+  "ScopeStyle[custom]": {
+    "prefix": "styleScoped",
+    "body": [
+      "<style scoped lang=\"${1}\">",
+      "\t${2}",
+      "</style>"
+    ],
+    "description": "ScopeStyle[custom]"
+  }
+}

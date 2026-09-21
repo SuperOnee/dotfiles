@@ -1,0 +1,66 @@
+[
+  {
+    "label": "Go: Run Current Test Function",
+    "command": "go",
+    "args": [
+      "test",
+      "-v",
+      "-run",
+      "$ZED_SYMBOL"
+    ],
+    "cwd": "$ZED_DIRNAME",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Go: Run Current File",
+    "command": "go",
+    "args": [
+      "run",
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "JavaScript / TypeScript: Run Current File",
+    "command": "bun",
+    "args": [
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Python: Run Current File",
+    "command": "python",
+    "args": [
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Lua: Run Current File",
+    "command": "lua",
+    "args": [
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Shell: Run Current File",
+    "command": "sh",
+    "args": [
+      "$ZED_FILE"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "allow_concurrent_runs": false
+  }
+]

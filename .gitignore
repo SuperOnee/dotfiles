@@ -1,7 +1,7 @@
 htop
 nvim.bak
 raycast
-.DS_store
+.DS_Store
 tmux-*.log
 tmux/plugins
 lazyvim.json
@@ -17,3 +17,15 @@ gh
 gh-copilot
 btop
 .env
+
+# Machine-local configuration and generated state
+/homebrew/
+/fish/fish_variables
+/fish/fish_history
+/fish/*.tmp
+
+# Local backups and Zed databases
+/macos/backups/
+/omniwm/backups/
+/zed/backups/
+/zed/prompts/

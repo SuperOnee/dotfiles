@@ -1,13 +1,19 @@
+set -g fish_features no-query-term
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
 # Homebrew path
-set -Ux PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/local/sbin $PATH
+set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/local/sbin $PATH
 
 # Path variables
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+fish_add_path --global /opt/homebrew/opt/node@25/bin
 
 # Lazygit config location
 export XDG_CONFIG_HOME="$HOME/.config"
