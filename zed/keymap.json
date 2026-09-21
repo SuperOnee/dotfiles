@@ -356,4 +356,82 @@
       "f20 q": ["workspace::SendKeystrokes", ""],
     },
   },
+  // Resize the center editor against a visible side Agent dock.
+  {
+    "context": "Workspace && (left_dock == agent_panel || right_dock == agent_panel) > Pane > Editor && mode == full && vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-w <": [
+        "action::Sequence",
+        [
+          "vim::ClearOperators",
+          "agent::ToggleFocus",
+          [
+            "workspace::IncreaseActiveDockSize",
+            {
+              "px": 40
+            }
+          ],
+          "workspace::FocusCenterPane",
+          [
+            "workspace::SendKeystrokes",
+            "f20"
+          ]
+        ]
+      ],
+      "f20 <": [
+        "action::Sequence",
+        [
+          "vim::ClearOperators",
+          "agent::ToggleFocus",
+          [
+            "workspace::IncreaseActiveDockSize",
+            {
+              "px": 40
+            }
+          ],
+          "workspace::FocusCenterPane",
+          [
+            "workspace::SendKeystrokes",
+            "f20"
+          ]
+        ]
+      ],
+      "ctrl-w >": [
+        "action::Sequence",
+        [
+          "vim::ClearOperators",
+          "agent::ToggleFocus",
+          [
+            "workspace::DecreaseActiveDockSize",
+            {
+              "px": 40
+            }
+          ],
+          "workspace::FocusCenterPane",
+          [
+            "workspace::SendKeystrokes",
+            "f20"
+          ]
+        ]
+      ],
+      "f20 >": [
+        "action::Sequence",
+        [
+          "vim::ClearOperators",
+          "agent::ToggleFocus",
+          [
+            "workspace::DecreaseActiveDockSize",
+            {
+              "px": 40
+            }
+          ],
+          "workspace::FocusCenterPane",
+          [
+            "workspace::SendKeystrokes",
+            "f20"
+          ]
+        ]
+      ]
+    }
+  },
 ]

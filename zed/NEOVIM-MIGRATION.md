@@ -153,3 +153,10 @@ Zed 的中央编辑器分屏尺寸动作只支持整数列宽/行高，未提供
 ## Insert 模式 Ctrl-w
 
 Agent 输入框和代码编辑器在 Vim Insert 模式下，`Ctrl-w` 使用原生 `editor::DeleteToPreviousWordStart` 删除前一个单词。两组 Dock 缩放绑定均排除 `vim_mode == insert`，避免 Ctrl-w 被当作组合键前缀而等待后续输入。普通模式及其他面板的缩放绑定保留。
+
+
+## Buffer 与侧边 AI Dock 的宽度调整
+
+当左侧或右侧 AI Dock 可见时，中心代码 buffer 的 NORMAL 模式使用 `Ctrl-w >` 缩窄 AI Dock 40px，让编辑区域增宽；`Ctrl-w <` 增宽 AI Dock 40px，让编辑区域缩窄。调整后焦点回到代码 buffer，F20 续接支持连续 `<` / `>`。绑定限定 `Workspace > Pane > Editor`，AI 输入框现有缩放及 Insert 模式删除单词不变。
+
+AI 侧栏可见时，上述宽度键优先调整中心区域与 AI Dock 的边界；AI 侧栏关闭时仍使用原有编辑器分屏缩放。高度键不变。配置语法已检查；界面自动化被中断，尚未完成物理按键的端到端验证。
