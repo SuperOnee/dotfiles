@@ -152,6 +152,13 @@ setup_menu_bar() {
     killall ControlCenter >/dev/null 2>&1 || true
 }
 
+setup_screenshot_shortcut() {
+    log "关闭系统内置的 Command + Shift + 3 全屏截图快捷键"
+    # 28: save a full-screen screenshot to a file; leave other shortcuts intact.
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 28 '{ enabled = 0; value = { parameters = (51, 20, 1179648); type = standard; }; }'
+    killall SystemUIServer >/dev/null 2>&1 || true
+}
+
 setup_finder() {
     log "Finder 显示所有文件扩展名和隐藏文件"
     defaults write -g AppleShowAllExtensions -bool true
@@ -295,6 +302,7 @@ main() {
     setup_omniwm_macos
     setup_dock
     setup_menu_bar
+    setup_screenshot_shortcut
     setup_finder
     setup_keyboard
     open -a OmniWM
