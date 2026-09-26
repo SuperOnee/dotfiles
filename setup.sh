@@ -137,6 +137,15 @@ setup_rime() {
     "$squirrel_bin" --reload
 }
 
+setup_dock() {
+    log "配置 Dock：左侧、自动隐藏、快速显示和隐藏"
+    defaults write com.apple.dock orientation -string left
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock autohide-delay -float 0
+    defaults write com.apple.dock autohide-time-modifier -float 0.15
+    killall Dock >/dev/null 2>&1 || true
+}
+
 main() {
     check_platform
     setup_homebrew
@@ -158,6 +167,7 @@ main() {
     "$BREW" services start postgresql@18
     "$BREW" services start redis
     setup_rime
+    setup_dock
 
     log "安装完成。重新打开终端即可进入 Fish。首次运行 OmniWM、Mos 等应用时，请按 macOS 提示授予所需权限。"
 }
