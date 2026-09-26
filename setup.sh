@@ -146,6 +146,32 @@ setup_dock() {
     killall Dock >/dev/null 2>&1 || true
 }
 
+setup_omniwm_macos() {
+    log "关闭与 OmniWM 冲突的 macOS 窗口快捷键和纵向触控板手势"
+    # Keep one native Space per display. OmniWM requires separate Spaces.
+    local old_spans
+    old_spans="$(defaults read com.apple.spaces spans-displays 2>/dev/null || true)"
+    defaults write com.apple.spaces spans-displays -bool false
+    if [[ "$old_spans" != 0 ]]; then
+        log "已开启‘显示器使用独立空间’，注销并重新登录后生效"
+    fi
+
+    # 32: Mission Control (Control+Up); 79/81: previous/next native Space.
+    # Leave Control+Down (App Exposé) and unrelated shortcuts intact.
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 32 '{ enabled = 0; value = { parameters = (65535, 126, 8650752); type = standard; }; }'
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 79 '{ enabled = 0; value = { parameters = (65535, 123, 8650752); type = standard; }; }'
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 81 '{ enabled = 0; value = { parameters = (65535, 124, 8650752); type = standard; }; }'
+
+    # Disable native vertical Mission Control gestures on built-in and
+    # Bluetooth trackpads; OmniWM uses four fingers for Overview.
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 0
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 0
+    defaults write com.apple.dock mru-spaces -bool false
+    killall SystemUIServer >/dev/null 2>&1 || true
+}
+
 main() {
     check_platform
     setup_homebrew
@@ -167,9 +193,11 @@ main() {
     "$BREW" services start postgresql@18
     "$BREW" services start redis
     setup_rime
+    setup_omniwm_macos
     setup_dock
+    open -a OmniWM
 
-    log "安装完成。重新打开终端即可进入 Fish。首次运行 OmniWM、Mos 等应用时，请按 macOS 提示授予所需权限。"
+    log "安装完成。重新打开终端即可进入 Fish。OmniWM 已启动，请按 macOS 提示授予辅助功能和输入监控权限。"
 }
 
 main "$@"
