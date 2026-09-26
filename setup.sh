@@ -282,7 +282,7 @@ main() {
     for formula in node bun go postgresql@18 redis fish cmatrix bat lolcat lazygit starship eza zoxide fzf yazi fd; do
         install_formula "$formula"
     done
-    for cask in omniwm google-chrome firefox ghostty mos another-redis-desktop-manager raycast shottr termius spotify chatgpt zed tableplus wechat wpsoffice git-credential-manager squirrel-app font-jetbrains-mono-nerd-font; do
+    for cask in omniwm google-chrome firefox ghostty mos another-redis-desktop-manager raycast shottr termius telegram chatgpt zed tableplus wpsoffice git-credential-manager squirrel-app font-jetbrains-mono-nerd-font; do
         install_cask "$cask"
     done
 
