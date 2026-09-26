@@ -51,7 +51,7 @@ install_formula() {
         log "已安装 formula: $name"
     else
         log "安装 formula: $name"
-        "$BREW" install "$name"
+        "$BREW" install --yes "$name"
     fi
 }
 
@@ -61,7 +61,7 @@ install_cask() {
         log "已安装 cask: $name"
     else
         log "安装 cask: $name"
-        "$BREW" install --cask "$name"
+        "$BREW" install --yes --cask "$name"
     fi
 }
 
@@ -138,16 +138,112 @@ setup_rime() {
 }
 
 setup_dock() {
-    log "配置 Dock：左侧、自动隐藏、快速显示和隐藏"
+    log "配置 Dock：左侧、自动隐藏、平滑显示和隐藏"
     defaults write com.apple.dock orientation -string left
     defaults write com.apple.dock autohide -bool true
     defaults write com.apple.dock autohide-delay -float 0
-    defaults write com.apple.dock autohide-time-modifier -float 0.15
+    defaults write com.apple.dock autohide-time-modifier -float 0.9
     killall Dock >/dev/null 2>&1 || true
 }
 
+setup_menu_bar() {
+    log "隐藏菜单栏 Spotlight 搜索图标"
+    defaults -currentHost write com.apple.controlcenter Spotlight -int 8
+    killall ControlCenter >/dev/null 2>&1 || true
+}
+
+setup_finder() {
+    log "Finder 显示所有文件扩展名和隐藏文件"
+    defaults write -g AppleShowAllExtensions -bool true
+    defaults write com.apple.finder AppleShowAllFiles -bool true
+    killall Finder >/dev/null 2>&1 || true
+}
+
+setup_keyboard() {
+    log "配置键盘重复、Fn、功能键和 Caps Lock"
+    defaults write -g KeyRepeat -int 2
+    defaults write -g InitialKeyRepeat -int 15
+    defaults write com.apple.HIToolbox AppleFnUsageType -int 1
+    defaults write -g com.apple.keyboard.fnState -bool true
+
+    # hidutil mappings disappear after logout, so restore this one at login.
+    local mapping='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":30064771129,"HIDKeyboardModifierMappingDst":30064771113}]}'
+    local agent="$HOME/Library/LaunchAgents/com.superonee.caps-to-escape.plist"
+    mkdir -p "$HOME/Library/LaunchAgents"
+    cat > "$agent" <<'PLIST'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.superonee.caps-to-escape</string>
+  <key>ProgramArguments</key><array>
+    <string>/usr/bin/hidutil</string><string>property</string><string>--set</string>
+    <string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":30064771129,"HIDKeyboardModifierMappingDst":30064771113}]}</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+</dict></plist>
+PLIST
+    plutil -lint "$agent" >/dev/null
+    hidutil property --set "$mapping" >/dev/null
+    launchctl bootout "gui/$(id -u)" "$agent" >/dev/null 2>&1 || true
+    launchctl bootstrap "gui/$(id -u)" "$agent"
+}
+
+setup_input_sources() {
+    log "只保留 ABC 英文和鼠须管简体中文输入源，默认使用 ABC"
+    local helper_dir
+    helper_dir="$(mktemp -d -t setup-input-sources.XXXXXX)"
+    cat > "$helper_dir/main.c" <<'C'
+#include <Carbon/Carbon.h>
+#include <stdio.h>
+
+static const CFStringRef abc_id = CFSTR("com.apple.keylayout.ABC");
+static const CFStringRef squirrel_id = CFSTR("im.rime.inputmethod.Squirrel.Hans");
+
+static int matches(CFStringRef value, CFStringRef expected) {
+    return value && CFStringCompare(value, expected, 0) == kCFCompareEqualTo;
+}
+
+int main(void) {
+    TISInputSourceRef abc = NULL;
+    TISInputSourceRef squirrel = NULL;
+    CFArrayRef sources = TISCreateInputSourceList(NULL, true);
+    if (!sources) {
+        fputs("无法读取 macOS 输入源列表\n", stderr);
+        return 1;
+    }
+    for (CFIndex i = 0; i < CFArrayGetCount(sources); ++i) {
+        TISInputSourceRef source = (TISInputSourceRef)CFArrayGetValueAtIndex(sources, i);
+        CFStringRef id = (CFStringRef)TISGetInputSourceProperty(source, kTISPropertyInputSourceID);
+        if (matches(id, abc_id)) abc = source;
+        if (matches(id, squirrel_id)) squirrel = source;
+    }
+    if (!abc || !squirrel || TISEnableInputSource(abc) != noErr ||
+        TISEnableInputSource(squirrel) != noErr || TISSelectInputSource(abc) != noErr) {
+        fputs("无法启用 ABC 和鼠须管，或无法选中 ABC\n", stderr);
+        CFRelease(sources);
+        return 1;
+    }
+    CFRelease(sources);
+    return 0;
+}
+C
+    clang -framework Carbon "$helper_dir/main.c" -o "$helper_dir/main"
+    "$helper_dir/main"
+    rm -f "$helper_dir/main.c" "$helper_dir/main"
+    rmdir "$helper_dir"
+    # Write this last: TIS can silently drop Squirrel from macOS 27's
+    # persisted input menu even while reporting its source as enabled.
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array \
+        '{ InputSourceKind = "Keyboard Layout"; "KeyboardLayout ID" = 252; "KeyboardLayout Name" = ABC; }' \
+        '{ "Bundle ID" = "im.rime.inputmethod.Squirrel"; "Input Mode" = "im.rime.inputmethod.Squirrel.Hans"; InputSourceKind = "Input Mode"; }' \
+        '{ "Bundle ID" = "com.apple.CharacterPaletteIM"; InputSourceKind = "Non Keyboard Input Method"; }' \
+        '{ "Bundle ID" = "com.apple.PressAndHold"; InputSourceKind = "Non Keyboard Input Method"; }'
+}
+
 setup_omniwm_macos() {
-    log "关闭与 OmniWM 冲突的 macOS 窗口快捷键和纵向触控板手势"
+    log "配置桌面点击行为，关闭与 OmniWM 冲突的快捷键和触控板手势"
+    # Clicking the wallpaper reveals the desktop only while Stage Manager is on.
+    defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
     # Keep one native Space per display. OmniWM requires separate Spaces.
     local old_spans
     old_spans="$(defaults read com.apple.spaces spans-displays 2>/dev/null || true)"
@@ -159,6 +255,8 @@ setup_omniwm_macos() {
     # 32: Mission Control (Control+Up); 79/81: previous/next native Space.
     # Leave Control+Down (App Exposé) and unrelated shortcuts intact.
     defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 32 '{ enabled = 0; value = { parameters = (65535, 126, 8650752); type = standard; }; }'
+    # 64: Spotlight search (Command+Space).
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '{ enabled = 0; value = { parameters = (32, 49, 1048576); type = standard; }; }'
     defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 79 '{ enabled = 0; value = { parameters = (65535, 123, 8650752); type = standard; }; }'
     defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 81 '{ enabled = 0; value = { parameters = (65535, 124, 8650752); type = standard; }; }'
 
@@ -184,7 +282,7 @@ main() {
     for formula in node bun go postgresql@18 redis fish cmatrix bat lolcat lazygit starship eza zoxide fzf yazi fd; do
         install_formula "$formula"
     done
-    for cask in omniwm google-chrome firefox ghostty mos another-redis-desktop-manager raycast termius spotify chatgpt zed tableplus wechat wpsoffice git-credential-manager squirrel-app font-jetbrains-mono-nerd-font; do
+    for cask in omniwm google-chrome firefox ghostty mos another-redis-desktop-manager raycast shottr termius spotify chatgpt zed tableplus wechat wpsoffice git-credential-manager squirrel-app font-jetbrains-mono-nerd-font; do
         install_cask "$cask"
     done
 
@@ -193,8 +291,12 @@ main() {
     "$BREW" services start postgresql@18
     "$BREW" services start redis
     setup_rime
+    setup_input_sources
     setup_omniwm_macos
     setup_dock
+    setup_menu_bar
+    setup_finder
+    setup_keyboard
     open -a OmniWM
 
     log "安装完成。重新打开终端即可进入 Fish。OmniWM 已启动，请按 macOS 提示授予辅助功能和输入监控权限。"
