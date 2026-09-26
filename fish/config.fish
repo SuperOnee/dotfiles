@@ -29,13 +29,11 @@ function fish_greeting
 end
 
 # Alias
-alias vim nvim
 alias py python
 alias cd z
 alias ww "cd ~/Work"
 alias oo "cd ~/Code"
 alias note "cd ~/Notes"
-alias dotn "cd ~/.config/nvim"
 alias of "open -a finder ."
 alias crypto "go run ~/.config/script/crypto/main.go"
 alias ran "go run ~/.config/script/random/main.go"
@@ -74,7 +72,7 @@ function y
 end
 
 # Editor
-set -gx EDITOR nvim
+set -gx EDITOR zed
 
 # Keybindings
 fzf_configure_bindings --directory=\ct
