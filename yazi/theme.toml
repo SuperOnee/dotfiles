@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 cwd = { fg = "#94e2d5" }
 
 hovered = { fg = "#1e1e2e", bg = "#f38ba8" }
@@ -68,7 +68,7 @@ list = {}
 btn_yes = { reversed = true }
 btn_no = {}
 
-[completion]
+[cmp]
 border = { fg = "#f5c2e7" }
 
 [tasks]
@@ -110,9 +110,13 @@ rules = [
   { mime = "application/{pdf,doc,rtf}", fg = "#a6e3a1" },
 
   # Fallback
-  { name = "*", fg = "#cdd6f4" },
-  { name = "*/", fg = "#f5c2e7" },
+  { url = "*", fg = "#cdd6f4" },
+  { url = "*/", fg = "#f5c2e7" },
 ]
+
+[git]
+unstaged = { fg = "blue" }
+deleted = { fg = "red", bold = true }
 
 [icon]
 files = [
